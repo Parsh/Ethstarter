@@ -44,4 +44,41 @@ describe('Campaign', () => {
     const manager = await campaign.methods.manager().call();
     expect(manager).toEqual(accounts[0]);
   });
+
+  it('should allow people to contribute money and mark them as backers', async () => {
+    await campaign.methods.contribute().send({
+      from: accounts[1],
+      value: '200'
+    });
+
+    const isBacker = await campaign.methods.backers(accounts[1]).call();
+    expect(isBacker).toBe(true);
+  });
+
+  it('should require a minimum contribution', async () => {
+    try {
+      await campaign.methods.contribute().send({
+        from: accounts[1],
+        value: '90'
+      });
+      fail();
+    } catch (err) {
+      expect(err).toBeDefined();
+    }
+  });
+
+  it('should allow a manager to make a payment request', async () => {
+    await campaign.methods
+      .createRequest('Buy Fuel Tanks', '1000', accounts[2])
+      .send({
+        from: accounts[0],
+        gas: '1000000'
+      });
+
+    const request = await campaign.methods.requests(0).call();
+
+    expect(request.description).toEqual('Buy Fuel Tanks');
+    expect(request.value).toEqual('1000');
+    expect(request.recipient).toEqual(accounts[2]);
+  });
 });
