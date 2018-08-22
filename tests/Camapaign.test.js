@@ -81,4 +81,44 @@ describe('Campaign', () => {
     expect(request.value).toEqual('1000');
     expect(request.recipient).toEqual(accounts[2]);
   });
+
+  it('should process the request and pay the recipient', async () => {
+    await campaign.methods.contribute().send({
+      from: accounts[1],
+      value: web3.utils.toWei('10', 'ether')
+    });
+
+    await campaign.methods
+      .createRequest(
+        'Buy consoles',
+        web3.utils.toWei('5', 'ether'),
+        accounts[3]
+      )
+      .send({
+        from: accounts[0],
+        gas: '1000000'
+      });
+
+    await campaign.methods.approveRequest(0).send({
+      from: accounts[1],
+      gas: '1000000'
+    });
+
+    let initialRecipientBalance = await web3.eth.getBalance(accounts[3]);
+    initialRecipientBalance = parseFloat(
+      web3.utils.fromWei(initialRecipientBalance, 'ether')
+    );
+
+    await campaign.methods.finalizeRequest(0).send({
+      from: accounts[0],
+      gas: '1000000'
+    });
+
+    let finalRecipientBalance = await web3.eth.getBalance(accounts[3]);
+    finalRecipientBalance = parseFloat(
+      web3.utils.fromWei(finalRecipientBalance, 'ether')
+    );
+
+    expect(finalRecipientBalance - initialRecipientBalance).toEqual(5);
+  });
 });
