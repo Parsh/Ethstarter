@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/Parsh24/Kickstarter-DApp/issues"
   },
-  "homepage": "https://github.com/Parsh24/Kickstarter-DApp#readme"
+  "homepage": "https://github.com/Parsh24/Kickstarter-DApp#readme",
+  "dependencies": {
+    "fs-extra": "^7.0.0",
+    "ganache-cli": "^6.1.8",
+    "solc": "^0.4.24",
+    "web3": "^1.0.0-beta.35"
+  },
+  "devDependencies": {
+    "jest": "^23.5.0"
+  }
 }
