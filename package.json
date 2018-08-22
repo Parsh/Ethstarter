@@ -1,0 +1,19 @@
+{
+  "name": "kickstarter-dapp",
+  "version": "1.0.0",
+  "description": "A decentralized application, harnessing the potential of Ethereum, to provide a better solution to the existing kickstarter system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Parsh24/Kickstarter-DApp.git"
+  },
+  "author": "Parsh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Parsh24/Kickstarter-DApp/issues"
+  },
+  "homepage": "https://github.com/Parsh24/Kickstarter-DApp#readme"
+}
