@@ -19,14 +19,28 @@ contract Campaign{
         _;
     }
 
-    function Campaign(uint _minimum) public {
+    function Campaign(uint _minimumContribution) public {
         manager = msg.sender;
-        minimumContribution = _minimum;
+        minimumContribution = _minimumContribution;
     }   
 
     function contribute() public payable {
         require(msg.value > minimumContribution);
         approvers.push(msg.sender);
+    }
+
+    function createRequest(string _description, uint _value, address _recipient) 
+        public restricted {
+            
+            Request memory newRequest = Request({
+               description: _description,
+               value: _value,
+               recipient: _recipient,
+               complete: false
+            });
+            
+            requests.push(newRequest);
+        
     }
         
 }
