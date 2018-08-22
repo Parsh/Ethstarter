@@ -1,5 +1,5 @@
 {
-  "name": "kickstarter-dapp",
+  "name": "ethstarter",
   "version": "1.0.0",
   "description": "A decentralized application, harnessing the potential of Ethereum, to provide a better solution to the existing kickstarter system.",
   "main": "index.js",
