@@ -7,15 +7,22 @@ contract Campaign{
         uint value;
         address recipient;
         bool complete;
+        uint approvalCount;
+        mapping(address => bool) approvals;
     }
 
     address public manager;
     uint public minimumContribution;
-    address[] public approvers;
+    mapping(address => bool) public backers;
     Request[] public requests;
 
     modifier restricted(){
         require(msg.sender == manager);
+        _;
+    }
+
+    modifier isBacker(){
+        require(backers[msg.sender]);
         _;
     }
 
@@ -26,7 +33,7 @@ contract Campaign{
 
     function contribute() public payable {
         require(msg.value > minimumContribution);
-        approvers.push(msg.sender);
+        backers[msg.sender] = true;
     }
 
     function createRequest(string _description, uint _value, address _recipient) 
@@ -36,11 +43,24 @@ contract Campaign{
                description: _description,
                value: _value,
                recipient: _recipient,
-               complete: false
+               complete: false,
+               approvalCount: 0
             });
             
             requests.push(newRequest);
         
     }
         
+    function approveRequest(uint requestIndex) public isBacker {
+
+        Request storage request = requests[requestIndex];
+        
+        //checks whether the backer has already voted/approved this particular request
+        require(!request.approvals[msg.sender]); 
+        
+        request.approvals[msg.sender] = true;
+        request.approvalCount++;
+    
+    }
+    
 }
