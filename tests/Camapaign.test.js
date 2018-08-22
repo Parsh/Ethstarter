@@ -10,14 +10,16 @@ describe('Campaign', () => {
 
   beforeEach(async () => {
     accounts = await web3.eth.getAccounts();
-    factory = await web3.eth
-      .Contract(JSON.parse(compiledCampaignFactory.interface))
+
+    factory = await new web3.eth.Contract(
+      JSON.parse(compiledCampaignFactory.interface)
+    )
       .deploy({
-        data: compiledCampaignFactory.bytecode
+        data: '0x' + compiledCampaignFactory.bytecode
       })
       .send({
         from: accounts[0],
-        gas: '1000000'
+        gas: '2000000'
       });
 
     await factory.methods.createCampaign('100').send({
@@ -31,5 +33,15 @@ describe('Campaign', () => {
       JSON.parse(compiledCampaign.interface),
       campaignAddress
     );
+  });
+
+  it('should deploy a Campaign factory and a Campaign', () => {
+    expect(factory.options.address).toBeDefined();
+    expect(campaign.options.address).toBeDefined();
+  });
+
+  it('should mark the caller of the createCampaign method as a campaign manager', async () => {
+    const manager = await campaign.methods.manager().call();
+    expect(manager).toEqual(accounts[0]);
   });
 });

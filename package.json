@@ -4,7 +4,7 @@
   "description": "A decentralized application, harnessing the potential of Ethereum, to provide a better solution to the existing kickstarter system.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll"
   },
   "repository": {
     "type": "git",
