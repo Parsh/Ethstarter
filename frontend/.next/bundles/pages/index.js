@@ -58319,26 +58319,111 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var CampaignIndex =
+var CampaignShowcase =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(CampaignIndex, _Component);
+  _inherits(CampaignShowcase, _Component);
 
-  function CampaignIndex() {
-    _classCallCheck(this, CampaignIndex);
+  function CampaignShowcase() {
+    _classCallCheck(this, CampaignShowcase);
 
-    return _possibleConstructorReturn(this, (CampaignIndex.__proto__ || Object.getPrototypeOf(CampaignIndex)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (CampaignShowcase.__proto__ || Object.getPrototypeOf(CampaignShowcase)).apply(this, arguments));
   }
 
-  _createClass(CampaignIndex, [{
-    key: "render",
-    value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h1", {
+  _createClass(CampaignShowcase, [{
+    key: "getMDB",
+    value: function getMDB() {
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
           lineNumber: 13
         }
-      }, this.props.campaigns[0], " ", Math.random());
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("link", {
+        rel: "stylesheet",
+        href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14
+        }
+      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("link", {
+        href: "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css",
+        rel: "stylesheet",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18
+        }
+      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("link", {
+        href: "https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css",
+        rel: "stylesheet",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 22
+        }
+      }));
+    }
+  }, {
+    key: "renderCampaigns",
+    value: function renderCampaigns() {
+      var campaignCards = this.props.campaigns.map(function (address) {
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 33
+          }
+        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+          className: "card mt-5 hoverable",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 34
+          }
+        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+          className: "card-body",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 35
+          }
+        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h4", {
+          className: "card-title",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 36
+          }
+        }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 37
+          }
+        }, address)), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("p", {
+          className: "card-text",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 39
+          }
+        }, "Some quick example text to build on the card title and make up the bulk of the card's content."), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
+          href: "#",
+          className: "btn btn-primary",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 43
+          }
+        }, "View Campaign"))));
+      });
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 52
+        }
+      }, campaignCards);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 57
+        }
+      }, this.getMDB(), this.renderCampaigns());
     }
   }], [{
     key: "getInitialProps",
@@ -58356,12 +58441,11 @@ function (_Component) {
 
               case 2:
                 campaigns = _context.sent;
-                console.log('Ran');
                 return _context.abrupt("return", {
                   campaigns: campaigns
                 });
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -58375,10 +58459,10 @@ function (_Component) {
     }()
   }]);
 
-  return CampaignIndex;
+  return CampaignShowcase;
 }(__WEBPACK_IMPORTED_MODULE_1_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (CampaignIndex);
+/* harmony default export */ __webpack_exports__["default"] = (CampaignShowcase);
     (function (Component, route) {
       if(!Component) return
       if (false) return
