@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import factory from '../ethereum/factory';
 import importMDB from '../ui-components/importMDB';
-import Card from '../ui-components/card';
+import { Card, Jumbotron } from '../ui-components/mdb-stateless-components';
 
 class CampaignShowcase extends Component {
   static async getInitialProps() {
@@ -21,8 +21,20 @@ class CampaignShowcase extends Component {
   render() {
     return (
       <div>
-        {importMDB()}
-        {this.renderCampaigns()}
+        <Jumbotron
+          title="Ethstarter: Bringing creative projects to life!"
+          buttonText="Start a Campaign"
+        />
+        <div className="container mt-5">
+          {importMDB()}
+          <div class="clearfix">
+            <button type="button" class="btn btn-primary float-right ">
+              Create Campaign
+            </button>
+          </div>
+          <h1>Open Campaigns</h1>
+          {this.renderCampaigns()}
+        </div>
       </div>
     );
   }

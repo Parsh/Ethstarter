@@ -126,7 +126,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ethereum_factory__ = __webpack_require__("./ethereum/factory.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ui_components_importMDB__ = __webpack_require__("./ui-components/importMDB.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ui_components_card__ = __webpack_require__("./ui-components/card.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ui_components_mdb_stateless_components__ = __webpack_require__("./ui-components/mdb-stateless-components.js");
 
 var _jsxFileName = "/home/parsh/Desktop/Ethereum and Solidity The Complete Developers Guide/Projects/Ethstarter/frontend/pages/index.js";
 
@@ -166,7 +166,7 @@ function (_Component) {
     key: "renderCampaigns",
     value: function renderCampaigns() {
       var campaignCards = this.props.campaigns.map(function (address) {
-        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__ui_components_card__["a" /* default */], {
+        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__ui_components_mdb_stateless_components__["a" /* Card */], {
           title: address,
           key: address,
           __source: {
@@ -185,7 +185,38 @@ function (_Component) {
           fileName: _jsxFileName,
           lineNumber: 23
         }
-      }, Object(__WEBPACK_IMPORTED_MODULE_3__ui_components_importMDB__["a" /* default */])(), this.renderCampaigns());
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__ui_components_mdb_stateless_components__["b" /* Jumbotron */], {
+        title: "Ethstarter: Bringing creative projects to life!",
+        buttonText: "Start a Campaign",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 24
+        }
+      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+        className: "container mt-5",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 28
+        }
+      }, Object(__WEBPACK_IMPORTED_MODULE_3__ui_components_importMDB__["a" /* default */])(), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+        "class": "clearfix",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 30
+        }
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", {
+        type: "button",
+        "class": "btn btn-primary float-right ",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 31
+        }
+      }, "Create Campaign")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h1", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 35
+        }
+      }, "Open Campaigns"), this.renderCampaigns()));
     }
   }], [{
     key: "getInitialProps",
@@ -225,59 +256,6 @@ function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_1_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (CampaignShowcase);
-
-/***/ }),
-
-/***/ "./ui-components/card.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _jsxFileName = "/home/parsh/Desktop/Ethereum and Solidity The Complete Developers Guide/Projects/Ethstarter/frontend/ui-components/card.js";
-
-
-var Card = function Card(props) {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-    className: "card hoverable",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 5
-    }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-    className: "card-body",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 6
-    }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", {
-    className: "card-title",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 7
-    }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    }
-  }, props.title)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
-    className: "card-text",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 10
-    }
-  }, props.children), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
-    href: "#",
-    className: "btn btn-primary",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    }
-  }, "View Campaign")));
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Card);
 
 /***/ }),
 
@@ -321,6 +299,111 @@ var importMDB = function importMDB() {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (importMDB);
+
+/***/ }),
+
+/***/ "./ui-components/mdb-stateless-components.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Card; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Jumbotron; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _jsxFileName = "/home/parsh/Desktop/Ethereum and Solidity The Complete Developers Guide/Projects/Ethstarter/frontend/ui-components/mdb-stateless-components.js";
+
+var Card = function Card(props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+    className: "card hoverable",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+    className: "card-body",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", {
+    className: "card-title",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    }
+  }, props.title)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
+    className: "card-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    }
+  }, props.children), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+    href: "#",
+    className: "btn btn-info",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    }
+  }, "View Campaign")));
+};
+var Jumbotron = function Jumbotron(props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+    className: "z-depth-4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+    "class": "jumbotron jumbotron-fluid",
+    style: {
+      backgroundImage: 'url(https://avatars.mds.yandex.net/get-pdb/985790/b812a497-5256-4af1-b79d-9190d692e788/orig)'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 22
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+    "class": "container text-center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", {
+    "class": "h1-reponsive mb-4 mt-2 text-white font-bold display-4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    }
+  }, props.title), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
+    "class": "lead",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    }
+  }, props.content), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    }
+  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", {
+    className: "btn btn-outline-white btn-rounded",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", {
+    className: "fa fa-plus left",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    }
+  }), " ", props.buttonText))));
+};
 
 /***/ }),
 
