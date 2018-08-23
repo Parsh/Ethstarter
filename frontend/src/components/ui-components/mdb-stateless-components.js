@@ -20,17 +20,17 @@ export const Jumbotron = props => {
   return (
     <div className="z-depth-4">
       <div
-        class="jumbotron jumbotron-fluid"
+        className="jumbotron jumbotron-fluid"
         style={{
           backgroundImage:
             'url(https://avatars.mds.yandex.net/get-pdb/985790/b812a497-5256-4af1-b79d-9190d692e788/orig)'
         }}
       >
-        <div class="container text-center">
-          <h1 class="h1-reponsive mb-4 mt-2 text-white font-bold display-4">
+        <div className="container text-center">
+          <h1 className="h1-reponsive mb-4 mt-2 text-white font-bold display-4">
             {props.title}
           </h1>
-          <p class="lead">{props.content}</p>
+          <p className="lead">{props.content}</p>
           <br />
           <a className="btn btn-outline-white btn-rounded">
             <i className="fa fa-plus left" /> {props.buttonText}
