@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import factory from '../ethereum/factory';
 import web3 from '../ethereum/web3';
-import { runInThisContext } from 'vm';
+import { Link } from 'react-router-dom';
 
 class CreateCampaign extends Component {
   state = {
@@ -42,7 +42,14 @@ class CreateCampaign extends Component {
     }
 
     return (
-      <div className="container" style={{ marginTop: '100px' }}>
+      <div className="container animated fadeIn mt-5">
+        <div className="clearfix">
+          <Link to="/">
+            <button type="button" className="btn btn-primary float-right">
+              Ethstarter
+            </button>
+          </Link>
+        </div>
         <h1>Create Campaign</h1>
 
         <form onSubmit={this.onSubmit}>

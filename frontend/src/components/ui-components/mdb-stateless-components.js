@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Card = props => {
   return (
@@ -32,9 +33,11 @@ export const Jumbotron = props => {
           </h1>
           <p className="lead text-white">{props.content}</p>
           <br />
-          <a className="btn btn-outline-white btn-rounded">
-            <i className="fa fa-plus left" /> {props.buttonText}
-          </a>
+          <Link to="/create">
+            <button className="btn btn-outline-white btn-rounded">
+              <i className="fa fa-plus left" /> {props.buttonText}
+            </button>
+          </Link>
         </div>
       </div>
     </div>
