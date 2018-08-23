@@ -92,4 +92,19 @@ contract Campaign{
         
     }
 
+    function getSummary() public view returns(
+        uint, uint, uint, uint, address
+    ){
+        return (
+            minimumContribution,
+            this.balance,
+            requests.length,
+            backersCount,
+            manager
+        );
+    }
+
+    function getRequestsCount() public view returns(uint){
+        return requests.length;
+    }
 }
