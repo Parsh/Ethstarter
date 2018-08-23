@@ -30,7 +30,7 @@ export const Jumbotron = props => {
           <h1 className="h1-reponsive mb-4 mt-2 text-white font-bold display-4">
             {props.title}
           </h1>
-          <p className="lead">{props.content}</p>
+          <p className="lead text-white">{props.content}</p>
           <br />
           <a className="btn btn-outline-white btn-rounded">
             <i className="fa fa-plus left" /> {props.buttonText}

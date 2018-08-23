@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Jumbotron } from './ui-components/mdb-stateless-components';
+import { Card } from './ui-components/mdb-stateless-components';
 
 class CampaignShowcase extends Component {
   renderCampaigns() {
@@ -12,20 +12,14 @@ class CampaignShowcase extends Component {
 
   render() {
     return (
-      <div>
-        <Jumbotron
-          title="Ethstarter: Bringing creative projects to life!"
-          buttonText="Start a Campaign"
-        />
-        <div className="container mt-5">
-          <div class="clearfix">
-            <button type="button" class="btn btn-primary float-right">
-              Create Campaign
-            </button>
-          </div>
-          <h1 className="mt-2">Open Campaigns</h1>
-          <div className="mt-4">{this.renderCampaigns()}</div>
+      <div className="container mt-5">
+        <div class="clearfix">
+          <button type="button" class="btn btn-primary float-right">
+            Create Campaign
+          </button>
         </div>
+        <h1 className="mt-2">Open Campaigns</h1>
+        <div className="mt-5">{this.renderCampaigns()}</div>
       </div>
     );
   }
