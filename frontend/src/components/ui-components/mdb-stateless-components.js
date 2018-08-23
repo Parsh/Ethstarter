@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Card = props => {
   return (
-    <div className="card hoverable">
+    <div className="card hoverable mt-4">
       <div className="card-body">
         <h4 className="card-title">
           <a>{props.title}</a>
@@ -33,7 +33,7 @@ export const Jumbotron = props => {
           </h1>
           <p className="lead text-white">{props.content}</p>
           <br />
-          <Link to="/create">
+          <Link to="/create-campaign">
             <button className="btn btn-outline-white btn-rounded">
               <i className="fa fa-plus left" /> {props.buttonText}
             </button>

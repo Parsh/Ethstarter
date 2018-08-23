@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import factory from '../ethereum/factory';
 import web3 from '../ethereum/web3';
-import { Link } from 'react-router-dom';
 
 class CreateCampaign extends Component {
   state = {
     minimumContribution: '',
     errorMessage: '',
-    loading: false
+    loading: false,
+    created: false
   };
 
   onSubmit = async event => {
@@ -16,6 +16,7 @@ class CreateCampaign extends Component {
       errorMessage: '',
       loading: true
     });
+
     try {
       const accounts = await web3.eth.getAccounts();
       await factory.methods
@@ -27,16 +28,35 @@ class CreateCampaign extends Component {
       this.setState({ errorMessage: err.message });
     }
 
-    this.setState({ loading: false });
+    this.setState({
+      loading: false,
+      created: true
+    });
+
+    //this.props.history.push('/');
   };
 
   render() {
     let errorAlert = null;
+    let successAlert = null;
 
     if (this.state.errorMessage) {
       errorAlert = (
-        <div class="alert alert-danger mt-4 z-depth-2" role="alert">
+        <div className="alert alert-danger mt-4 z-depth-2" role="alert">
           {this.state.errorMessage}
+        </div>
+      );
+    }
+
+    if (!this.state.created) {
+      successAlert = (
+        <div
+          className="alert alert-success mt-4 z-depth-2 "
+          style={{ fontSize: '20px' }}
+          role="alert"
+        >
+          Cheers! Your campaign is successfully created. Here it is:{' '}
+          <strong style={{ fontSize: '24px' }}>0x13fdakjh32jklhj324hk</strong>
         </div>
       );
     }
@@ -44,11 +64,15 @@ class CreateCampaign extends Component {
     return (
       <div className="container animated fadeIn mt-5">
         <div className="clearfix">
-          <Link to="/">
-            <button type="button" className="btn btn-primary float-right">
-              Ethstarter
-            </button>
-          </Link>
+          {/* <Link to="/"> */}
+          <button
+            type="button"
+            onClick={() => this.props.history.push('/')}
+            className="btn btn-primary float-right"
+          >
+            Ethstarter
+          </button>
+          {/* </Link> */}
         </div>
         <h1>Create Campaign</h1>
 
@@ -63,13 +87,12 @@ class CreateCampaign extends Component {
               type="text"
               placeholder="Enter the amount in denominations of wei"
               id="form1"
-              className="form-control mt-4"
+              className="form-control form-control-lg mt-4"
               value={this.state.minimumContribution}
               onChange={event =>
                 this.setState({ minimumContribution: event.target.value })
               }
             />
-
             {this.state.loading ? (
               <button
                 type="submit"
@@ -84,8 +107,7 @@ class CreateCampaign extends Component {
                 Create !
               </button>
             )}
-
-            {errorAlert}
+            {errorAlert} {successAlert}
           </div>
         </form>
       </div>
