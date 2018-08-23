@@ -58384,11 +58384,18 @@ function (_Component) {
           lineNumber: 31
         }
       }, "Create Campaign")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h1", {
+        className: "mt-2",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 35
         }
-      }, "Open Campaigns"), this.renderCampaigns()));
+      }, "Open Campaigns"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+        className: "mt-4",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 36
+        }
+      }, this.renderCampaigns())));
     }
   }], [{
     key: "getInitialProps",

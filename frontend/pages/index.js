@@ -32,8 +32,8 @@ class CampaignShowcase extends Component {
               Create Campaign
             </button>
           </div>
-          <h1>Open Campaigns</h1>
-          {this.renderCampaigns()}
+          <h1 className="mt-2">Open Campaigns</h1>
+          <div className="mt-4">{this.renderCampaigns()}</div>
         </div>
       </div>
     );
