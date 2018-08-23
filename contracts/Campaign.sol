@@ -58,6 +58,8 @@ contract Campaign{
     function createRequest(string _description, uint _value, address _recipient) 
         public managerOnly {
             
+            require(_value <= this.balance);
+
             Request memory newRequest = Request({
                description: _description,
                value: _value,
@@ -70,9 +72,9 @@ contract Campaign{
         
     }
         
-    function approveRequest(uint requestIndex) public isBacker {
+    function approveRequest(uint _requestIndex) public isBacker {
 
-        Request storage request = requests[requestIndex];
+        Request storage request = requests[_requestIndex];
         
         //checks whether the backer has already voted/approved this particular request
         require(!request.approvals[msg.sender]); 
@@ -82,9 +84,9 @@ contract Campaign{
     
     }
 
-    function finalizeRequest(uint requestIndex) public managerOnly {
+    function finalizeRequest(uint _requestIndex) public managerOnly {
         
-        Request storage request = requests[requestIndex];
+        Request storage request = requests[_requestIndex];
         
         require(request.approvalCount > (backersCount/2)); //more than 50% of backers must approve
         require(!request.complete); //check whether the request is already finalized

@@ -27,7 +27,7 @@ const deploy = async () => {
     });
 
   console.log('Contract Deployed! Contract Address: ', lottery.options.address);
-  //Deployed Campaign Factory Address: 0x39D9ef4edE8ec7A6F12Ca4bD9bD0e5a5c5487c36
+  //Latest Deployed Campaign Factory Address: 0x39D9ef4edE8ec7A6F12Ca4bD9bD0e5a5c5487c36
 };
 
 deploy();
