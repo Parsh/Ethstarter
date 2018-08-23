@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import factory from './ethereum/factory';
+import CampaignShowcase from './components/CampaignShowcase';
 
 class App extends Component {
   state = {
@@ -13,7 +14,7 @@ class App extends Component {
   }
 
   render() {
-    return <h1>{this.state.campaigns}</h1>;
+    return <CampaignShowcase campaigns={this.state.campaigns} />;
   }
 }
 
