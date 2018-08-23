@@ -24,13 +24,14 @@ class CreateCampaign extends Component {
         .send({
           from: accounts[0]
         });
+
+      this.setState({ created: true });
     } catch (err) {
       this.setState({ errorMessage: err.message });
     }
 
     this.setState({
-      loading: false,
-      created: true
+      loading: false
     });
 
     //this.props.history.push('/');
@@ -48,15 +49,19 @@ class CreateCampaign extends Component {
       );
     }
 
-    if (!this.state.created) {
+    if (this.state.created) {
       successAlert = (
         <div
           className="alert alert-success mt-4 z-depth-2 "
           style={{ fontSize: '20px' }}
           role="alert"
         >
-          Cheers! Your campaign is successfully created. Here it is:{' '}
-          <strong style={{ fontSize: '24px' }}>0x13fdakjh32jklhj324hk</strong>
+          Cheers! Your campaign is successfully created and campaign's smart
+          contract is deployed on the Ethereum blockchain. <br />
+          Here you go:
+          <strong className="ml-2" style={{ fontSize: '24px' }}>
+            0x13fdakjh32jklhj324hk
+          </strong>
         </div>
       );
     }
