@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class CampaignShowcase extends Component {
   renderCampaigns() {
     const campaignCards = this.props.campaigns.map(address => {
-      return <Card title={address} key={address} />;
+      return <Card title={address} key={address} route={address} />;
     });
 
     return campaignCards;

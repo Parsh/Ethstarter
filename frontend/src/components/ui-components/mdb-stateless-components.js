@@ -9,9 +9,9 @@ export const Card = props => {
           <a>{props.title}</a>
         </h4>
         <p className="card-text">{props.children}</p>
-        <a href="#" className="btn btn-info">
-          View Campaign
-        </a>
+        <Link to={'campaigns/' + props.route}>
+          <button className="btn btn-info">View Campaign</button>
+        </Link>
       </div>
     </div>
   );
