@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import factory from '../ethereum/factory';
 import web3 from '../ethereum/web3';
+import { Link } from 'react-router-dom';
 
 class CreateCampaign extends Component {
   state = {
     minimumContribution: '',
     errorMessage: '',
     loading: false,
-    created: false
+    created: false,
+    campaign_address: ''
   };
 
   onSubmit = async event => {
     event.preventDefault();
     this.setState({
       errorMessage: '',
+      created: false,
+      campaign_address: '',
       loading: true
     });
 
@@ -25,7 +29,11 @@ class CreateCampaign extends Component {
           from: accounts[0]
         });
 
-      this.setState({ created: true });
+      const campaign_address = await factory.methods.recentCampaign().call();
+      this.setState({
+        created: true,
+        campaign_address
+      });
     } catch (err) {
       this.setState({ errorMessage: err.message });
     }
@@ -52,7 +60,7 @@ class CreateCampaign extends Component {
     if (this.state.created) {
       successAlert = (
         <div
-          className="alert alert-success mt-4 z-depth-2 "
+          className="alert alert-success mt-4 z-depth-2 clearfix mb-5"
           style={{ fontSize: '20px' }}
           role="alert"
         >
@@ -60,8 +68,13 @@ class CreateCampaign extends Component {
           contract is deployed on the Ethereum blockchain. <br />
           Here you go:
           <strong className="ml-2" style={{ fontSize: '24px' }}>
-            0x13fdakjh32jklhj324hk
+            {this.state.campaign_address}
           </strong>
+          <Link to={'campaigns/' + this.state.campaign_address}>
+            <button type="button" className="btn btn-success float-right mt-3">
+              View Campaign
+            </button>
+          </Link>
         </div>
       );
     }
@@ -99,14 +112,20 @@ class CreateCampaign extends Component {
               }
             />
             {this.state.loading ? (
-              <button
-                type="submit"
-                className="btn btn-lg btn-primary mt-4"
-                disabled
-              >
-                <i className="fa fa-refresh fa-spin mr-3"> </i>
-                Creating...
-              </button>
+              <div>
+                <button
+                  type="submit"
+                  className="btn btn-lg btn-primary mt-4"
+                  disabled
+                >
+                  <i className="fa fa-refresh fa-spin mr-3"> </i>
+                  Creating...
+                </button>{' '}
+                <span style={{ fontSize: '20px' }} className="ml-3">
+                  Hold on! We are deploying your campaign's smart contract on
+                  the Ethereum blockchain...
+                </span>
+              </div>
             ) : (
               <button type="submit" className="btn btn-lg btn-primary mt-4">
                 Create !
