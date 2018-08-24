@@ -75,7 +75,6 @@ class CampaignDetails extends Component {
       return (
         <div className="container animated fadeIn mb-5">
           <CampaignTron />
-          <hr />
           <div className="row mt-5">{this.renderDetails()}</div>
         </div>
       );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import factory from '../ethereum/factory';
 import web3 from '../ethereum/web3';
 import { Link } from 'react-router-dom';
+import { Jumbotron } from './ui-components/mdb-stateless-components';
 
 class CreateCampaign extends Component {
   state = {
@@ -80,60 +81,68 @@ class CreateCampaign extends Component {
     }
 
     return (
-      <div className="container animated fadeIn mt-5">
-        <div className="clearfix">
-          {/* <Link to="/"> */}
-          <button
-            type="button"
-            onClick={() => this.props.history.push('/')}
-            className="btn btn-primary float-right"
-          >
-            Ethstarter
-          </button>
-          {/* </Link> */}
-        </div>
-        <h1>Create Campaign</h1>
+      <div className="animated fadeIn">
+        <Jumbotron
+          title="Ethstarter: Bringing creative projects to life!"
+          buttonText="Start a Campaign"
+          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa risus, tristique ac rutrum at, aliquam id purus. Praesent eleifend lectus vel enim euismod, quis porttitor tortor placerat. Sed pretium purus eu lobortis luctus. Aenean quis laoreet urna. Quisque vel consequat erat, ut laoreet sem. "
+        />
 
-        <form onSubmit={this.onSubmit}>
-          <div className="md-form mt-5">
-            <h4>Minimum Contribution</h4>
-            <h6>
-              Amount that an individual has to contribute in order to be a
-              backer
-            </h6>
-            <input
-              type="text"
-              placeholder="Enter the amount in denominations of wei"
-              id="form1"
-              className="form-control form-control-lg mt-4"
-              value={this.state.minimumContribution}
-              onChange={event =>
-                this.setState({ minimumContribution: event.target.value })
-              }
-            />
-            {this.state.loading ? (
-              <div>
-                <button
-                  type="submit"
-                  className="btn btn-lg btn-primary mt-4"
-                  disabled
-                >
-                  <i className="fa fa-refresh fa-spin mr-3"> </i>
-                  Creating...
-                </button>{' '}
-                <span style={{ fontSize: '20px' }} className="ml-3">
-                  Hold on! We are deploying your campaign's smart contract on
-                  the Ethereum blockchain...
-                </span>
-              </div>
-            ) : (
-              <button type="submit" className="btn btn-lg btn-primary mt-4">
-                Create !
-              </button>
-            )}
-            {errorAlert} {successAlert}
+        <div className="container mt-5">
+          <div className="clearfix">
+            {/* <Link to="/"> */}
+            <button
+              type="button"
+              onClick={() => this.props.history.push('/')}
+              className="btn btn-primary float-right"
+            >
+              Ethstarter
+            </button>
+            {/* </Link> */}
           </div>
-        </form>
+          <h1>Create Campaign</h1>
+
+          <form onSubmit={this.onSubmit}>
+            <div className="md-form mt-5">
+              <h4>Minimum Contribution</h4>
+              <h6>
+                Amount that an individual has to contribute in order to be a
+                backer
+              </h6>
+              <input
+                type="text"
+                placeholder="Enter the amount in denominations of wei"
+                id="form1"
+                className="form-control form-control-lg mt-4"
+                value={this.state.minimumContribution}
+                onChange={event =>
+                  this.setState({ minimumContribution: event.target.value })
+                }
+              />
+              {this.state.loading ? (
+                <div>
+                  <button
+                    type="submit"
+                    className="btn btn-lg btn-primary mt-4"
+                    disabled
+                  >
+                    <i className="fa fa-refresh fa-spin mr-3"> </i>
+                    Creating...
+                  </button>{' '}
+                  <span style={{ fontSize: '20px' }} className="ml-3">
+                    Hold on! We are deploying your campaign's smart contract on
+                    the Ethereum blockchain...
+                  </span>
+                </div>
+              ) : (
+                <button type="submit" className="btn btn-lg btn-primary mt-4">
+                  Create !
+                </button>
+              )}
+              {errorAlert} {successAlert}
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
