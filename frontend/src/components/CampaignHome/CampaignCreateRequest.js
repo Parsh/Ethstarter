@@ -12,9 +12,52 @@ class CampaignCreateRequest extends Component {
 
   onSubmit = async event => {
     event.preventDefault();
+
+    this.setState({
+      errorMessage: '',
+      created: false,
+      loading: true
+    });
+
+    try {
+      this.setState({ created: true, loading: false });
+    } catch (err) {
+      this.setState({ errorMessage: err.message, loading: false });
+    }
   };
 
   render() {
+    let errorAlert = null;
+    let successAlert = null;
+
+    if (this.state.errorMessage) {
+      errorAlert = (
+        <div
+          className="alert alert-danger mt-4 z-depth-2 text-center"
+          role="alert"
+        >
+          <strong>Error:</strong> {this.state.errorMessage}
+        </div>
+      );
+    }
+
+    if (this.state.created) {
+      successAlert = (
+        <div
+          className="alert alert-success mt-4 z-depth-2 clearfix text-center"
+          style={{ fontSize: '20px' }}
+          role="alert"
+        >
+          <strong style={{ fontSize: '22px' }}>
+            Request is successfully created!
+          </strong>
+          <br />
+          Please wait for a majority approval(over 50% should approve) from
+          backers.
+        </div>
+      );
+    }
+
     const form = (
       <form onSubmit={this.onSubmit}>
         <div className="md-form text-center">
@@ -56,12 +99,12 @@ class CampaignCreateRequest extends Component {
             <div>
               <button className="btn btn-lg btn-primary mt-4" disabled>
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
-                Contributing...
+                Creating...
               </button>
             </div>
           ) : (
             <button type="submit" className="btn btn-lg btn-primary mt-4">
-              Contribute !
+              Create !
             </button>
           )}
         </div>
@@ -71,6 +114,7 @@ class CampaignCreateRequest extends Component {
     return (
       <div className="container" style={{ marginTop: '100px' }}>
         {form}
+        {errorAlert} {successAlert}
       </div>
     );
   }
