@@ -34,7 +34,11 @@ class CampaignHome extends Component {
             />
             <Route
               path={this.props.match.url + '/create-request'}
-              component={CampaignCreateRequest}
+              render={() => (
+                <CampaignCreateRequest
+                  contractAddress={this.props.match.params.id}
+                />
+              )}
             />
             <Route
               path={this.props.match.url}

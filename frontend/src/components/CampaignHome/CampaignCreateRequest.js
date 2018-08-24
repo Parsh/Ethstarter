@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Campaign from '../../ethereum/campaign';
+import web3 from '../../ethereum/web3';
 
 class CampaignCreateRequest extends Component {
   state = {
@@ -19,7 +21,21 @@ class CampaignCreateRequest extends Component {
       loading: true
     });
 
+    const campaign = Campaign(this.props.contractAddress);
+    const { description, value, recipientAddress } = this.state;
+
     try {
+      const accounts = await web3.eth.getAccounts();
+      await campaign.methods
+        .createRequest(
+          description,
+          web3.utils.toWei(value, 'ether'),
+          recipientAddress
+        )
+        .send({
+          from: accounts[0]
+        });
+
       this.setState({ created: true, loading: false });
     } catch (err) {
       this.setState({ errorMessage: err.message, loading: false });
@@ -97,13 +113,13 @@ class CampaignCreateRequest extends Component {
           </div>
           {this.state.loading ? (
             <div>
-              <button className="btn btn-lg btn-primary mt-4" disabled>
+              <button className="btn btn-lg btn-primary mt-4 w-25" disabled>
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Creating...
               </button>
             </div>
           ) : (
-            <button type="submit" className="btn btn-lg btn-primary mt-4">
+            <button type="submit" className="btn btn-lg btn-primary mt-4  w-25">
               Create !
             </button>
           )}
@@ -112,7 +128,7 @@ class CampaignCreateRequest extends Component {
     );
 
     return (
-      <div className="container" style={{ marginTop: '100px' }}>
+      <div className="container" style={{ marginTop: '120px' }}>
         {form}
         {errorAlert} {successAlert}
       </div>
