@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from './ui-components/mdb-stateless-components';
+import { ShowCard } from './ui-components/mdb-stateless-components';
 import { Link } from 'react-router-dom';
 
 import factory from '../ethereum/factory';
@@ -16,7 +16,7 @@ class CampaignShowcase extends Component {
 
   renderCampaigns() {
     const campaignCards = this.state.campaigns.map(address => {
-      return <Card title={address} key={address} route={address} />;
+      return <ShowCard title={address} key={address} route={address} />;
     });
     return campaignCards;
   }

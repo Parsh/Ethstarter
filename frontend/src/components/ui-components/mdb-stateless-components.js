@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const Card = props => {
+export const ShowCard = props => {
   return (
     <div className="card hoverable mt-4">
       <div className="card-body">
@@ -12,6 +12,18 @@ export const Card = props => {
         <Link to={'campaigns/' + props.route}>
           <button className="btn btn-info">View Campaign</button>
         </Link>
+      </div>
+    </div>
+  );
+};
+
+export const DetailCard = props => {
+  return (
+    <div className="card" style={{ width: '24rem' }}>
+      <div className="card-body">
+        <h2 className="card-title">{props.title}</h2>
+        <h4 className="card-title text-muted">{props.meta}</h4>
+        <p className="card-text">{props.description}</p>
       </div>
     </div>
   );
