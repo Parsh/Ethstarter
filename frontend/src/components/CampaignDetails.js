@@ -17,22 +17,6 @@ class CampaignDetails extends Component {
 
   campaign;
 
-  async componentDidMount() {
-    this.campaign = Campaign(this.props.match.params.id);
-    let summary = await this.campaign.methods.getSummary().call();
-    //though the above summary var looks like an array, however, it's an object with keys beint 0,1...
-
-    summary = {
-      minimumContribution: summary[0],
-      balance: summary[1],
-      requestCount: summary[2],
-      backersCount: summary[3],
-      manager: summary[4]
-    };
-
-    this.setState({ summary: summary });
-  }
-
   renderDetails() {
     const items = [
       {
@@ -89,10 +73,58 @@ class CampaignDetails extends Component {
       });
 
       this.setState({ contributed: true, loading: false });
-    } catch (err) {}
+    } catch (err) {
+      this.setState({ errorMessage: err.message, loading: false });
+    }
+  };
+
+  fetchSummary = async () => {
+    this.campaign = Campaign(this.props.match.params.id);
+    let summary = await this.campaign.methods.getSummary().call();
+    //though the above summary var looks like an array, however, it's an object with keys beint 0,1...
+
+    summary = {
+      minimumContribution: summary[0],
+      balance: summary[1],
+      requestCount: summary[2],
+      backersCount: summary[3],
+      manager: summary[4]
+    };
+
+    this.setState({ summary: summary });
   };
 
   render() {
+    this.fetchSummary();
+
+    let errorAlert = null;
+    let successAlert = null;
+
+    if (this.state.errorMessage) {
+      errorAlert = (
+        <div
+          className="alert alert-danger mt-4 z-depth-2 text-center"
+          role="alert"
+        >
+          <strong>Error:</strong> {this.state.errorMessage}
+        </div>
+      );
+    }
+
+    if (this.state.contributed) {
+      successAlert = (
+        <div
+          className="alert alert-success mt-4 z-depth-2 clearfix text-center"
+          style={{ fontSize: '20px' }}
+          role="alert"
+        >
+          Yay! You successfully contributed to the campaign. <br />
+          <strong style={{ fontSize: '25px' }}>You are now a backer</strong>
+          with the ability to participate in request approvals.
+        </div>
+      );
+    }
+
     const form = (
       <form onSubmit={this.onSubmit}>
         <div className="md-form">
@@ -109,7 +141,7 @@ class CampaignDetails extends Component {
             <div>
               <button className="btn btn-lg btn-primary mt-4" disabled>
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
-                Contributing
+                Contributing...
               </button>
             </div>
           ) : (
@@ -127,6 +159,8 @@ class CampaignDetails extends Component {
           <CampaignTron manager={this.state.summary.manager} />
           <div className="container">
             <div className="text-center">{form}</div>
+            {errorAlert}
+            {successAlert}
             <div className="row">{this.renderDetails()}</div>
           </div>
         </div>
