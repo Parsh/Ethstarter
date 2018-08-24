@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import CampaignShowcase from './components/CampaignShowcase';
 import CreateCampaign from './components/CreateCampaign';
-import CampaignDetails from './components/CampaignDetails';
+import CampaignHome from './components/CampaignHome/CampaignHome';
 
 class App extends Component {
   render() {
@@ -20,7 +20,7 @@ class App extends Component {
             // render={() => ( <CampaignShowcase campaigns={this.state.campaigns} />)}
           />
           <Route path="/create-campaign" exact component={CreateCampaign} />
-          <Route path="/campaigns/:id" component={CampaignDetails} />
+          <Route path="/campaigns/:id" component={CampaignHome} />
           <Route component={CampaignShowcase} />
         </Switch>
       </BrowserRouter>

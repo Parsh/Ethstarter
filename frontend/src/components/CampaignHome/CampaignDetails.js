@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import web3 from '../ethereum/web3';
-import Campaign from '../ethereum/campaign';
+import web3 from '../../ethereum/web3';
+import Campaign from '../../ethereum/campaign';
 import { Link } from 'react-router-dom';
 import {
   DetailCard,
   CampaignTron
-} from './ui-components/mdb-stateless-components';
+} from '../ui-components/mdb-stateless-components';
 
 class CampaignDetails extends Component {
   state = {
