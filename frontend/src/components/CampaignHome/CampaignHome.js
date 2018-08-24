@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import CampaignDetails from './CampaignDetails';
 import CampaignRequests from './CampaignRequests';
+import CampaignCreateRequest from './CampaignCreateRequest';
 
 class CampaignHome extends Component {
   state = {
@@ -31,7 +32,14 @@ class CampaignHome extends Component {
               path={this.props.match.url + '/requests'}
               render={() => <CampaignRequests {...this.props} />}
             />
-            <Route render={() => <CampaignDetails {...this.props} />} />
+            <Route
+              path={this.props.match.url + '/create-request'}
+              component={CampaignCreateRequest}
+            />
+            <Route
+              path={this.props.match.url}
+              render={() => <CampaignDetails {...this.props} />}
+            />
           </Switch>
         </div>
       </div>
