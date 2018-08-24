@@ -128,7 +128,7 @@ class CampaignCreateRequest extends Component {
     );
 
     return (
-      <div className="container" style={{ marginTop: '120px' }}>
+      <div className="container animated fadeIn" style={{ marginTop: '120px' }}>
         {form}
         {errorAlert} {successAlert}
       </div>

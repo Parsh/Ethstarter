@@ -95,7 +95,7 @@ class CampaignRequests extends Component {
             {request.approvalCount}/{this.state.backers}
           </td>
           <td>
-            {this.state.approvalLoading ? (
+            {request.complete ? null : this.state.approvalLoading ? (
               <button className="btn btn-primary disabled">
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Approving...
@@ -110,8 +110,8 @@ class CampaignRequests extends Component {
             )}
           </td>
           <td>
-            {this.state.finalizeLoading ? (
-              <button className="btn btn-mdb-color">
+            {request.complete ? null : this.state.finalizeLoading ? (
+              <button className="btn btn-mdb-color disabled">
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Finalizing...
               </button>
@@ -131,7 +131,7 @@ class CampaignRequests extends Component {
 
   renderTable = () => {
     return (
-      <table className="table table-hover">
+      <table className="table table-hover text-center">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -190,13 +190,15 @@ class CampaignRequests extends Component {
     }
 
     return (
-      <div className="container animated fadeIn">
-        <Link to={this.props.match.url + '/create-request'}>
-          <button className="btn btn-info">
-            Create Request (Manager Only)
-          </button>
-        </Link>
-        <div>{this.renderTable()}</div>
+      <div className="container animated fadeIn mt-5">
+        <div className="clearfix">
+          <Link to={this.props.match.url + '/create-request'}>
+            <button className="btn btn-info float-right">
+              Create Request (Manager Only)
+            </button>
+          </Link>
+        </div>
+        <div className="mt-5">{this.renderTable()}</div>
         <div style={{ marginTop: '75px' }}>
           {errorAlert} {approvedAlert} {finalizedAlert}
         </div>
