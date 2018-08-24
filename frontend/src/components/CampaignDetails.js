@@ -29,12 +29,6 @@ class CampaignDetails extends Component {
   renderDetails() {
     const items = [
       {
-        title: this.state.summary.manager,
-        meta: 'Address of the Manager',
-        description:
-          'Manager created this campaign and has the ability to create requests to withdraw money'
-      },
-      {
         title: this.state.summary.minimumContribution,
         meta: 'Minimum Contribution (wei)',
         description:
@@ -71,15 +65,54 @@ class CampaignDetails extends Component {
   }
 
   render() {
+    const form = (
+      <form onSubmit={this.onSubmit}>
+        <div className="md-form">
+          <h4>Contribute to the Campaign</h4>
+          <input
+            type="text"
+            // placeholder="Amount in denominations of wei(check minimum)"
+            id="form1"
+            className="form-control form-control-lg mt-4 w-25 m-auto text-center"
+            placeholder="Amount in wei"
+            value={this.state.minimumContribution}
+            onChange={event =>
+              this.setState({ minimumContribution: event.target.value })
+            }
+          />
+          {this.state.loading ? (
+            <div>
+              <button
+                type="submit"
+                className="btn btn-lg btn-primary mt-4"
+                disabled
+              >
+                <i className="fa fa-refresh fa-spin mr-3"> </i>
+                Contributing...
+              </button>
+            </div>
+          ) : (
+            <button type="submit" className="btn btn-lg btn-primary mt-4">
+              Contribute !
+            </button>
+          )}
+        </div>
+      </form>
+    );
+
     if (this.state.summary) {
       return (
-        <div className="container animated fadeIn mb-5">
-          <CampaignTron />
-          <div className="row mt-5">{this.renderDetails()}</div>
+        <div className="animated fadeIn mb-5">
+          <CampaignTron manager={this.state.summary.manager} />
+          <div className="container">
+            <div className="text-center">{form}</div>
+
+            <div className="row mt-5">{this.renderDetails()}</div>
+          </div>
         </div>
       );
     } else {
-      return <div className="container" />;
+      return <div />;
     }
   }
 }
