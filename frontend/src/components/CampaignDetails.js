@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Campaign from '../ethereum/campaign';
-import { DetailCard } from './ui-components/mdb-stateless-components';
+import {
+  DetailCard,
+  CampaignTron
+} from './ui-components/mdb-stateless-components';
 
 class CampaignDetails extends Component {
   state = {
@@ -70,14 +73,14 @@ class CampaignDetails extends Component {
   render() {
     if (this.state.summary) {
       return (
-        <div className="container animated fadeIn">
-          <h1>{this.props.match.params.id}</h1>
-          <h1>Manager: {this.state.summary.manager}</h1>
-          <div className="mt-5">{this.renderDetails()}</div>
+        <div className="container animated fadeIn mb-5">
+          <CampaignTron />
+          <hr />
+          <div className="row mt-5">{this.renderDetails()}</div>
         </div>
       );
     } else {
-      return <div className="container">Loading...</div>;
+      return <div className="container" />;
     }
   }
 }
