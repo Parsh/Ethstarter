@@ -4,6 +4,7 @@ import { CampaignTron } from '../ui-components/mdb-stateless-components';
 import { Route, Switch } from 'react-router-dom';
 
 import CampaignDetails from './CampaignDetails';
+import CampaignRequests from './CampaignRequests';
 
 class CampaignHome extends Component {
   state = {
@@ -26,6 +27,10 @@ class CampaignHome extends Component {
         />
         <div className="container">
           <Switch>
+            <Route
+              path={this.props.match.url + '/requests'}
+              render={() => <CampaignRequests {...this.props} />}
+            />
             <Route render={() => <CampaignDetails {...this.props} />} />
           </Switch>
         </div>
