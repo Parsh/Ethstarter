@@ -15,6 +15,22 @@ class CampaignDetails extends Component {
 
   campaign;
 
+  async componentDidMount() {
+    this.campaign = Campaign(this.props.match.params.id);
+    let summary = await this.campaign.methods.getSummary().call();
+    //though the above summary var looks like an array, however, it's an object with keys beint 0,1...
+
+    summary = {
+      minimumContribution: summary[0],
+      balance: summary[1],
+      requestCount: summary[2],
+      backersCount: summary[3],
+      manager: summary[4]
+    };
+
+    this.setState({ summary: summary });
+  }
+
   renderDetails() {
     const items = [
       {
@@ -77,25 +93,7 @@ class CampaignDetails extends Component {
     }
   };
 
-  fetchSummary = async () => {
-    this.campaign = Campaign(this.props.match.params.id);
-    let summary = await this.campaign.methods.getSummary().call();
-    //though the above summary var looks like an array, however, it's an object with keys beint 0,1...
-
-    summary = {
-      minimumContribution: summary[0],
-      balance: summary[1],
-      requestCount: summary[2],
-      backersCount: summary[3],
-      manager: summary[4]
-    };
-
-    this.setState({ summary: summary });
-  };
-
   render() {
-    this.fetchSummary();
-
     let errorAlert = null;
     let successAlert = null;
 

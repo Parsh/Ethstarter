@@ -12,14 +12,13 @@ class CampaignHome extends Component {
     manager: ''
   };
 
-  getManager = async () => {
+  async componentDidMount() {
     this.campaign = Campaign(this.props.match.params.id);
     const manager = await this.campaign.methods.manager().call();
     this.setState({ manager });
-  };
+  }
 
   render() {
-    this.getManager();
     return (
       <div className="animated fadeIn">
         <CampaignTron
