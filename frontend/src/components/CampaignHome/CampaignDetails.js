@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import web3 from '../../ethereum/web3';
 import Campaign from '../../ethereum/campaign';
 import { Link } from 'react-router-dom';
-import {
-  DetailCard,
-  CampaignTron
-} from '../ui-components/mdb-stateless-components';
+import { DetailCard } from '../ui-components/mdb-stateless-components';
 
 class CampaignDetails extends Component {
   state = {
@@ -157,23 +154,17 @@ class CampaignDetails extends Component {
 
     if (this.state.summary) {
       return (
-        <div className="animated fadeIn mb-5">
-          <CampaignTron
-            manager={this.state.summary.manager}
-            contractAddress={this.props.match.params.id}
-          />
-          <div className="container">
-            <div className="text-center">{form}</div>
-            {errorAlert}
-            {successAlert}
-            <div className="row">{this.renderDetails()}</div>
-            <div className="text-center mt-5">
-              <Link to={`${this.props.match.url}/requests`}>
-                <button className="btn btn-lg btn-info w-50">
-                  View Requests
-                </button>
-              </Link>
-            </div>
+        <div className="container animated fadeIn mb-5">
+          <div className="text-center">{form}</div>
+          {errorAlert}
+          {successAlert}
+          <div className="row">{this.renderDetails()}</div>
+          <div className="text-center mt-5">
+            <Link to={`${this.props.match.url}/requests`}>
+              <button className="btn btn-lg btn-info w-50">
+                View Requests
+              </button>
+            </Link>
           </div>
         </div>
       );

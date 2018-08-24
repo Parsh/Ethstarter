@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import web3 from '../../ethereum/web3';
 import Campaign from '../../ethereum/campaign';
 import { CampaignTron } from '../ui-components/mdb-stateless-components';
+import { Route, Switch } from 'react-router-dom';
+
+import CampaignDetails from './CampaignDetails';
 
 class CampaignHome extends Component {
   state = {
@@ -17,12 +19,16 @@ class CampaignHome extends Component {
   render() {
     this.getManager();
     return (
-      <div>
+      <div className="animated fadeIn">
         <CampaignTron
           manager={this.state.manager}
           contractAddress={this.props.match.params.id}
         />
-        <div className="container">Something</div>
+        <div className="container">
+          <Switch>
+            <Route render={() => <CampaignDetails {...this.props} />} />
+          </Switch>
+        </div>
       </div>
     );
   }
