@@ -40,8 +40,11 @@ export const CampaignTron = props => {
         <strong>Name of the Campaign!</strong>
       </h1>
       <h3 className="h3-responsive text-muted">
-        Address of the Manager: {props.manager}
+        Address of Campaign's Smart Contract: {props.contractAddress}
       </h3>
+      <h4 className="h3-responsive text-muted">
+        Address of Campaign Manager: {props.manager}
+      </h4>
     </div>
   );
 };

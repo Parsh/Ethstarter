@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import web3 from '../ethereum/web3';
 import Campaign from '../ethereum/campaign';
+import { Link } from 'react-router-dom';
 import {
   DetailCard,
   CampaignTron
@@ -22,7 +23,8 @@ class CampaignDetails extends Component {
       {
         title: web3.utils.fromWei(this.state.summary.balance, 'ether'),
         meta: 'Campaign balance (ether)',
-        description: 'Reflects the amount of money this campaign have'
+        description:
+          'Reflects the amount of money this campaign has left to spend'
       },
       {
         title: this.state.summary.minimumContribution,
@@ -156,12 +158,22 @@ class CampaignDetails extends Component {
     if (this.state.summary) {
       return (
         <div className="animated fadeIn mb-5">
-          <CampaignTron manager={this.state.summary.manager} />
+          <CampaignTron
+            manager={this.state.summary.manager}
+            contractAddress={this.props.match.params.id}
+          />
           <div className="container">
             <div className="text-center">{form}</div>
             {errorAlert}
             {successAlert}
             <div className="row">{this.renderDetails()}</div>
+            <div className="text-center mt-5">
+              <Link to={`${this.props.match.url}/requests`}>
+                <button className="btn btn-lg btn-info w-50">
+                  View Requests
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       );
