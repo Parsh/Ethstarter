@@ -6,7 +6,12 @@ import web3 from '../../ethereum/web3';
 class CampaignRequests extends Component {
   state = {
     requests: [],
-    backers: ''
+    backers: '',
+    errorMessage: '',
+    approvalLoading: false,
+    approved: false,
+    finalizeLoading: false,
+    finalized: false
   };
 
   campaign;
@@ -29,17 +34,53 @@ class CampaignRequests extends Component {
   }
 
   onApprove = async index => {
-    const accounts = await web3.eth.getAccounts();
-    await this.campaign.methods.approveRequest(index).send({
-      from: accounts[0]
+    this.setState({
+      approvalLoading: true,
+      errorMessage: '',
+      approved: false
     });
+
+    const accounts = await web3.eth.getAccounts();
+    try {
+      await this.campaign.methods.approveRequest(index).send({
+        from: accounts[0]
+      });
+
+      this.setState({
+        approved: true,
+        approvalLoading: false
+      });
+    } catch (err) {
+      this.setState({
+        errorMessage: err.message,
+        approvalLoading: false
+      });
+    }
   };
 
   onFinalize = async index => {
-    const accounts = await web3.eth.getAccounts();
-    await this.campaign.methods.finalizeRequest(index).send({
-      from: accounts[0]
+    this.setState({
+      finalizeLoading: true,
+      errorMessage: '',
+      finalized: false
     });
+
+    const accounts = await web3.eth.getAccounts();
+    try {
+      await this.campaign.methods.finalizeRequest(index).send({
+        from: accounts[0]
+      });
+
+      this.setState({
+        finalized: true,
+        finalizeLoading: false
+      });
+    } catch (err) {
+      this.setState({
+        errorMessage: err.message,
+        finalizeLoading: false
+      });
+    }
   };
 
   renderRow = () => {
@@ -54,20 +95,34 @@ class CampaignRequests extends Component {
             {request.approvalCount}/{this.state.backers}
           </td>
           <td>
-            <button
-              className="btn btn-primary"
-              onClick={() => this.onApprove(index)}
-            >
-              Approve
-            </button>
+            {this.state.approvalLoading ? (
+              <button className="btn btn-primary disabled">
+                <i className="fa fa-refresh fa-spin mr-3"> </i>
+                Approving...
+              </button>
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={() => this.onApprove(index)}
+              >
+                Approve
+              </button>
+            )}
           </td>
           <td>
-            <button
-              className="btn btn-mdb-color"
-              onClick={() => this.onFinalize(index)}
-            >
-              Finalize
-            </button>
+            {this.state.finalizeLoading ? (
+              <button className="btn btn-mdb-color">
+                <i className="fa fa-refresh fa-spin mr-3"> </i>
+                Finalizing...
+              </button>
+            ) : (
+              <button
+                className="btn btn-mdb-color"
+                onClick={() => this.onFinalize(index)}
+              >
+                Finalize
+              </button>
+            )}
           </td>
         </tr>
       );
@@ -94,6 +149,46 @@ class CampaignRequests extends Component {
   };
 
   render() {
+    let errorAlert = null;
+    let approvedAlert = null;
+    let finalizedAlert = null;
+
+    if (this.state.errorMessage) {
+      errorAlert = (
+        <div
+          className="alert alert-danger mt-4 z-depth-2 text-center"
+          role="alert"
+        >
+          <strong>Error:</strong> {this.state.errorMessage}
+        </div>
+      );
+    }
+
+    if (this.state.approved) {
+      approvedAlert = (
+        <div
+          className="alert alert-success mt-4 z-depth-2 clearfix text-center"
+          style={{ fontSize: '20px' }}
+          role="alert"
+        >
+          You have successfully approved the request!
+        </div>
+      );
+    }
+
+    if (this.state.finalized) {
+      finalizedAlert = (
+        <div
+          className="alert alert-success mt-4 z-depth-2 clearfix text-center"
+          style={{ fontSize: '20px' }}
+          role="alert"
+        >
+          Request is successfully finalized and the payment is transfered to the
+          recipient.
+        </div>
+      );
+    }
+
     return (
       <div className="container animated fadeIn">
         <Link to={this.props.match.url + '/create-request'}>
@@ -102,6 +197,9 @@ class CampaignRequests extends Component {
           </button>
         </Link>
         <div>{this.renderTable()}</div>
+        <div style={{ marginTop: '75px' }}>
+          {errorAlert} {approvedAlert} {finalizedAlert}
+        </div>
       </div>
     );
   }
