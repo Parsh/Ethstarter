@@ -104,7 +104,7 @@ class CreateCampaign extends Component {
                 className="btn btn-lg btn-primary mt-4"
                 disabled
               >
-                <i class="fa fa-refresh fa-spin mr-3"> </i>
+                <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Creating...
               </button>
             ) : (
