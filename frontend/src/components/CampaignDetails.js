@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import web3 from '../ethereum/web3';
 import Campaign from '../ethereum/campaign';
 import {
   DetailCard,
@@ -7,12 +8,18 @@ import {
 
 class CampaignDetails extends Component {
   state = {
-    summary: null
+    summary: null,
+    value: '',
+    loading: false,
+    errorMessage: '',
+    contributed: false
   };
 
+  campaign;
+
   async componentDidMount() {
-    const campaign = Campaign(this.props.match.params.id);
-    let summary = await campaign.methods.getSummary().call();
+    this.campaign = Campaign(this.props.match.params.id);
+    let summary = await this.campaign.methods.getSummary().call();
     //though the above summary var looks like an array, however, it's an object with keys beint 0,1...
 
     summary = {
@@ -28,6 +35,11 @@ class CampaignDetails extends Component {
 
   renderDetails() {
     const items = [
+      {
+        title: web3.utils.fromWei(this.state.summary.balance, 'ether'),
+        meta: 'Campaign balance (ether)',
+        description: 'Reflects the amount of money this campaign have'
+      },
       {
         title: this.state.summary.minimumContribution,
         meta: 'Minimum Contribution (wei)',
@@ -45,11 +57,6 @@ class CampaignDetails extends Component {
         meta: 'Number of Requests',
         description:
           "A request tries to withdraw money from campaign's smart contract. Finalizing a request requires approval from backers"
-      },
-      {
-        title: this.state.summary.balance,
-        meta: 'Campaign balance (ether)',
-        description: 'Reflects the amount of money this campaign have'
       }
     ];
 
@@ -59,10 +66,31 @@ class CampaignDetails extends Component {
           title={item.title}
           meta={item.meta}
           description={item.description}
+          key={item.meta}
         />
       );
     });
   }
+
+  onSubmit = async event => {
+    event.preventDefault();
+
+    this.setState({
+      errorMessage: '',
+      contributed: false,
+      loading: true
+    });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await this.campaign.methods.contribute().send({
+        from: accounts[0],
+        value: web3.utils.toWei(this.state.value, 'ether')
+      });
+
+      this.setState({ contributed: true, loading: false });
+    } catch (err) {}
+  };
 
   render() {
     const form = (
@@ -71,24 +99,17 @@ class CampaignDetails extends Component {
           <h4>Contribute to the Campaign</h4>
           <input
             type="text"
-            // placeholder="Amount in denominations of wei(check minimum)"
             id="form1"
             className="form-control form-control-lg mt-4 w-25 m-auto text-center"
-            placeholder="Amount in wei"
-            value={this.state.minimumContribution}
-            onChange={event =>
-              this.setState({ minimumContribution: event.target.value })
-            }
+            placeholder="Amount in ether"
+            value={this.state.value}
+            onChange={event => this.setState({ value: event.target.value })}
           />
           {this.state.loading ? (
             <div>
-              <button
-                type="submit"
-                className="btn btn-lg btn-primary mt-4"
-                disabled
-              >
+              <button className="btn btn-lg btn-primary mt-4" disabled>
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
-                Contributing...
+                Contributing
               </button>
             </div>
           ) : (
@@ -106,8 +127,7 @@ class CampaignDetails extends Component {
           <CampaignTron manager={this.state.summary.manager} />
           <div className="container">
             <div className="text-center">{form}</div>
-
-            <div className="row mt-5">{this.renderDetails()}</div>
+            <div className="row">{this.renderDetails()}</div>
           </div>
         </div>
       );
