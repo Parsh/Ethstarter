@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ShowCard, Jumbotron } from './ui-components/mdb-stateless-components';
+import { ShowCard } from './ui-components/mdb-stateless-components';
 import { Link } from 'react-router-dom';
 
 import factory from '../ethereum/factory';
