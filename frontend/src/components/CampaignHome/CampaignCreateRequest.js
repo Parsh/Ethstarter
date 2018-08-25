@@ -44,7 +44,7 @@ class CampaignCreateRequest extends Component {
         'No "from" address specified in neither the given options, nor the default options.'
       ) {
         err.message =
-          'Metamask is required to create campaign request! Please check if you are signed into metamask.';
+          'Metamask (operating over Rinkeby n/w) is required to create campaign request! Please check if you are signed into metamask.';
       }
       this.setState({ errorMessage: err.message, loading: false });
     }
