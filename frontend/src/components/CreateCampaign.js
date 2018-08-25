@@ -36,6 +36,13 @@ class CreateCampaign extends Component {
         campaign_address
       });
     } catch (err) {
+      if (
+        err.message ===
+        'No "from" address specified in neither the given options, nor the default options.'
+      ) {
+        err.message =
+          'Metamask is required to create campaign! Please check if you are signed into metamask.';
+      }
       this.setState({ errorMessage: err.message });
     }
 
@@ -52,7 +59,11 @@ class CreateCampaign extends Component {
 
     if (this.state.errorMessage) {
       errorAlert = (
-        <div className="alert alert-danger mt-4 z-depth-2" role="alert">
+        <div
+          className="alert alert-danger mt-4 z-depth-2 text-center"
+          role="alert"
+        >
+          <strong>Error: </strong>
           {this.state.errorMessage}
         </div>
       );
@@ -61,7 +72,7 @@ class CreateCampaign extends Component {
     if (this.state.created) {
       successAlert = (
         <div
-          className="alert alert-success mt-4 z-depth-2 clearfix mb-5"
+          className="alert alert-success mt-4 z-depth-2 clearfix mb-5 text-center"
           style={{ fontSize: '20px' }}
           role="alert"
         >

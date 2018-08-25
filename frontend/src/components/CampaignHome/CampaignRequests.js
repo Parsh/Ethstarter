@@ -51,6 +51,13 @@ class CampaignRequests extends Component {
         approvalLoading: false
       });
     } catch (err) {
+      if (
+        err.message ===
+        'No "from" address specified in neither the given options, nor the default options.'
+      ) {
+        err.message =
+          'Metamask is required to approve! Please check if you are signed into metamask.';
+      }
       this.setState({
         errorMessage: err.message,
         approvalLoading: false
@@ -76,6 +83,13 @@ class CampaignRequests extends Component {
         finalizeLoading: false
       });
     } catch (err) {
+      if (
+        err.message ===
+        'No "from" address specified in neither the given options, nor the default options.'
+      ) {
+        err.message =
+          'Metamask is required to finalize! Please check if you are signed into metamask.';
+      }
       this.setState({
         errorMessage: err.message,
         finalizeLoading: false

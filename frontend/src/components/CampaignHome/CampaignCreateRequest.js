@@ -39,6 +39,13 @@ class CampaignCreateRequest extends Component {
 
       this.setState({ created: true, loading: false });
     } catch (err) {
+      if (
+        err.message ===
+        'No "from" address specified in neither the given options, nor the default options.'
+      ) {
+        err.message =
+          'Metamask is required to create campaign request! Please check if you are signed into metamask.';
+      }
       this.setState({ errorMessage: err.message, loading: false });
     }
   };
