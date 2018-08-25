@@ -11,7 +11,8 @@ class CampaignRequests extends Component {
     approvalLoading: false,
     approved: false,
     finalizeLoading: false,
-    finalized: false
+    finalized: false,
+    processingIndex: null
   };
 
   campaign;
@@ -41,7 +42,8 @@ class CampaignRequests extends Component {
     this.setState({
       approvalLoading: true,
       errorMessage: '',
-      approved: false
+      approved: false,
+      processingIndex: index
     });
 
     const accounts = await web3.eth.getAccounts();
@@ -54,7 +56,8 @@ class CampaignRequests extends Component {
         this.fetchRequests();
         this.setState({
           approved: true,
-          approvalLoading: false
+          approvalLoading: false,
+          processingIndex: null
         });
       }, 2000);
     } catch (err) {
@@ -67,7 +70,8 @@ class CampaignRequests extends Component {
       }
       this.setState({
         errorMessage: err.message,
-        approvalLoading: false
+        approvalLoading: false,
+        processingIndex: null
       });
     }
   };
@@ -76,7 +80,8 @@ class CampaignRequests extends Component {
     this.setState({
       finalizeLoading: true,
       errorMessage: '',
-      finalized: false
+      finalized: false,
+      processingIndex: index
     });
 
     const accounts = await web3.eth.getAccounts();
@@ -89,7 +94,8 @@ class CampaignRequests extends Component {
         this.fetchRequests();
         this.setState({
           finalized: true,
-          finalizeLoading: false
+          finalizeLoading: false,
+          processingIndex: null
         });
       }, 2000);
     } catch (err) {
@@ -102,7 +108,8 @@ class CampaignRequests extends Component {
       }
       this.setState({
         errorMessage: err.message,
-        finalizeLoading: false
+        finalizeLoading: false,
+        processingIndex: null
       });
     }
   };
@@ -119,7 +126,8 @@ class CampaignRequests extends Component {
             {request.approvalCount}/{this.state.backers}
           </td>
           <td>
-            {request.complete ? null : this.state.approvalLoading ? (
+            {request.complete ? null : this.state.approvalLoading &&
+            this.state.processingIndex == index ? (
               <button className="btn btn-primary btn-sm disabled">
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Approving
@@ -138,7 +146,8 @@ class CampaignRequests extends Component {
               <button className="btn btn-mdb-color btn disabled">
                 Finalized!
               </button>
-            ) : this.state.finalizeLoading ? (
+            ) : this.state.finalizeLoading &&
+            this.state.processingIndex == index ? (
               <button className="btn btn-mdb-color btn-sm disabled">
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Finalizing
