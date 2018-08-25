@@ -7,6 +7,7 @@ import { Jumbotron } from './ui-components/mdb-stateless-components';
 class CreateCampaign extends Component {
   state = {
     minimumContribution: '',
+    campaignName: '',
     errorMessage: '',
     loading: false,
     created: false,
@@ -23,9 +24,17 @@ class CreateCampaign extends Component {
     });
 
     try {
+      if (this.state.minimumContribution == 0) {
+        throw Error('Please enter some minimum contribution value');
+      }
+
+      if (!this.state.campaignName) {
+        throw Error('Please enter a name for the campaign');
+      }
+
       const accounts = await web3.eth.getAccounts();
       await factory.methods
-        .createCampaign(this.state.minimumContribution)
+        .createCampaign(this.state.minimumContribution, this.state.campaignName)
         .send({
           from: accounts[0]
         });
@@ -33,6 +42,7 @@ class CreateCampaign extends Component {
       const campaign_address = await factory.methods.recentCampaign().call();
       this.setState({
         created: true,
+        loading: false,
         campaign_address
       });
     } catch (err) {
@@ -43,14 +53,8 @@ class CreateCampaign extends Component {
         err.message =
           'Metamask (operating over Rinkeby n/w) is required to create campaign! Please check if you are signed into metamask.';
       }
-      this.setState({ errorMessage: err.message });
+      this.setState({ errorMessage: err.message, loading: false });
     }
-
-    this.setState({
-      loading: false
-    });
-
-    //this.props.history.push('/');
   };
 
   render() {
@@ -112,7 +116,7 @@ class CreateCampaign extends Component {
         <div className="container mt-5">
           {breadcrum}
 
-          <h1 className="mt-5">Create Campaign</h1>
+          <h1 className="mt-3">Create Campaign</h1>
 
           <form onSubmit={this.onSubmit}>
             <div className="md-form mt-5">
@@ -129,6 +133,16 @@ class CreateCampaign extends Component {
                 value={this.state.minimumContribution}
                 onChange={event =>
                   this.setState({ minimumContribution: event.target.value })
+                }
+              />
+              <input
+                type="text"
+                placeholder="Name of the Campaign"
+                id="form1"
+                className="form-control form-control-lg mt-4"
+                value={this.state.campaignName}
+                onChange={event =>
+                  this.setState({ campaignName: event.target.value })
                 }
               />
               {this.state.loading ? (
