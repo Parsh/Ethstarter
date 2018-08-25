@@ -16,7 +16,9 @@ export class ShowCard extends Component {
     return (
       <div className="card hoverable mt-4 animated fadeIn">
         <div className="card-body">
-          <h3 className="card-title">{this.state.campaignName}</h3>
+          <h3 className="card-title animated fadeIn">
+            {this.state.campaignName}
+          </h3>
           <h5 className="card-title text-muted">{this.props.address}</h5>
           <Link to={'campaigns/' + this.props.route}>
             <button className="btn btn-info float-right">View Campaign</button>
@@ -46,7 +48,7 @@ export const DetailCard = props => {
 export const CampaignTron = props => {
   return (
     <div className="jumbotron text-center hoverable animated fadeIn">
-      <h1 className="h1-reponsive mb-4">
+      <h1 className="h1-reponsive mb-4 animated fadeIn">
         <strong>{props.campaignName}</strong>
       </h1>
       <h3 className="h3-responsive text-muted">
