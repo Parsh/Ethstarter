@@ -80,6 +80,16 @@ class CreateCampaign extends Component {
       );
     }
 
+    const breadcrum = (
+      <nav className="breadcrumb bg-white">
+        <Link to="/" className="breadcrumb-item">
+          Ethstarter
+        </Link>
+
+        <span className="breadcrumb-item active">Create Campaign</span>
+      </nav>
+    );
+
     return (
       <div className="animated fadeIn">
         <Jumbotron
@@ -89,18 +99,9 @@ class CreateCampaign extends Component {
         />
 
         <div className="container mt-5">
-          <div className="clearfix">
-            {/* <Link to="/"> */}
-            <button
-              type="button"
-              onClick={() => this.props.history.push('/')}
-              className="btn btn-primary float-right"
-            >
-              Ethstarter
-            </button>
-            {/* </Link> */}
-          </div>
-          <h1>Create Campaign</h1>
+          {breadcrum}
+
+          <h1 className="mt-5">Create Campaign</h1>
 
           <form onSubmit={this.onSubmit}>
             <div className="md-form mt-5">
