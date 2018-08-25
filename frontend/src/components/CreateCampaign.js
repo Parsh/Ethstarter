@@ -110,8 +110,14 @@ class CreateCampaign extends Component {
         <Jumbotron
           title="Ethstarter: Bringing creative projects to life!"
           buttonText="Start a Campaign"
-          content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam massa risus, tristique ac rutrum at, aliquam id purus. Praesent eleifend lectus vel enim euismod, quis porttitor tortor placerat. Sed pretium purus eu lobortis luctus. Aenean quis laoreet urna. Quisque vel consequat erat, ut laoreet sem. "
-        />
+        >
+          Ethstarter is a place where independent creators and passionate
+          backers come together to bring new ideas to life.
+          <br /> Explore creative projects and campaigns in science, design,
+          games, social cause etc. and back your favorites by contributing
+          ethers. As you back a project you explicitly get to play a part in
+          approving fund transfers. #GreaterControl&Transparency
+        </Jumbotron>
 
         <div className="container mt-5">
           {breadcrum}

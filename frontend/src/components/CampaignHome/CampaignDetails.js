@@ -81,7 +81,10 @@ class CampaignDetails extends Component {
     });
 
     try {
-      if (this.state.value < this.state.summary.minimumContribution) {
+      if (
+        parseInt(web3.utils.toWei(this.state.value, 'ether'), 10) <
+        parseInt(this.state.summary.minimumContribution, 10)
+      ) {
         throw Error(
           "You must contribute more than the campaign's specified minimum in order to become a backer."
         );

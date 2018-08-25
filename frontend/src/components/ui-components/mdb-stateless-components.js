@@ -19,7 +19,7 @@ export class ShowCard extends Component {
           <h3 className="card-title">{this.state.campaignName}</h3>
           <h5 className="card-title text-muted">{this.props.address}</h5>
           <Link to={'campaigns/' + this.props.route}>
-            <button className="btn btn-info">View Campaign</button>
+            <button className="btn btn-info float-right">View Campaign</button>
           </Link>
         </div>
       </div>
@@ -68,10 +68,10 @@ export const Jumbotron = props => {
         }}
       >
         <div className="container text-center">
-          <h1 className="h1-reponsive mb-4 mt-2 text-white font-bold display-4">
+          <h1 className="h1-reponsive mb-4 mt-2 text-white display-4">
             {props.title}
           </h1>
-          <p className="lead text-white">{props.content}</p>
+          <p className="lead text-white">{props.children}</p>
           <br />
           <Link to="/create-campaign">
             <button className="btn btn-outline-white btn-rounded">
