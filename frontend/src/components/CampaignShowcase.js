@@ -6,19 +6,17 @@ import factory from '../ethereum/factory';
 
 class CampaignShowcase extends Component {
   state = {
-    campaigns: []
+    renderCampaigns: null
   };
 
   async componentDidMount() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
-    this.setState({ campaigns });
-  }
 
-  renderCampaigns() {
-    const campaignCards = this.state.campaigns.map(address => {
+    const campaignCards = campaigns.map(address => {
       return <ShowCard title={address} key={address} route={address} />;
     });
-    return campaignCards;
+
+    this.setState({ renderCampaigns: campaignCards });
   }
 
   render() {
@@ -38,7 +36,7 @@ class CampaignShowcase extends Component {
             </Link>
           </div>
           <h1 className="mt-2">Open Campaigns</h1>
-          <div className="mt-4">{this.renderCampaigns()}</div>
+          <div className="mt-4">{this.state.renderCampaigns}</div>
         </div>
       </div>
     );

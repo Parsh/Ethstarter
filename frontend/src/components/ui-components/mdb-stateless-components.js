@@ -5,9 +5,7 @@ export const ShowCard = props => {
   return (
     <div className="card hoverable mt-4">
       <div className="card-body">
-        <h4 className="card-title">
-          <a>{props.title}</a>
-        </h4>
+        <h4 className="card-title">{props.title}</h4>
         <p className="card-text">{props.children}</p>
         <Link to={'campaigns/' + props.route}>
           <button className="btn btn-info">View Campaign</button>
@@ -36,8 +34,8 @@ export const DetailCard = props => {
 export const CampaignTron = props => {
   return (
     <div className="jumbotron text-center hoverable">
-      <h1 className="h1-reponsive mb-3">
-        <strong>Name of the Campaign!</strong>
+      <h1 className="h1-reponsive mb-4">
+        <strong>{props.campaignName}</strong>
       </h1>
       <h3 className="h3-responsive text-muted">
         Address of Campaign's Smart Contract: {props.contractAddress}

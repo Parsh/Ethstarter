@@ -9,19 +9,22 @@ import CampaignCreateRequest from './CampaignCreateRequest';
 
 class CampaignHome extends Component {
   state = {
-    manager: ''
+    manager: '',
+    campaignName: ''
   };
 
   async componentDidMount() {
     this.campaign = Campaign(this.props.match.params.id);
     const manager = await this.campaign.methods.manager().call();
-    this.setState({ manager });
+    const campaignName = await this.campaign.methods.campaignName().call();
+    this.setState({ manager, campaignName });
   }
 
   render() {
     return (
       <div className="animated fadeIn">
         <CampaignTron
+          campaignName={this.state.campaignName}
           manager={this.state.manager}
           contractAddress={this.props.match.params.id}
         />

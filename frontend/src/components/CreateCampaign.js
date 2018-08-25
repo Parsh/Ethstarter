@@ -115,59 +115,60 @@ class CreateCampaign extends Component {
 
         <div className="container mt-5">
           {breadcrum}
+          <div className="ml-3">
+            <h1 className="mt-3">Create Campaign</h1>
 
-          <h1 className="mt-3">Create Campaign</h1>
-
-          <form onSubmit={this.onSubmit}>
-            <div className="md-form mt-5">
-              <h4>Minimum Contribution</h4>
-              <h6>
-                Amount that an individual has to contribute in order to be a
-                backer
-              </h6>
-              <input
-                type="text"
-                placeholder="Enter the amount in denominations of wei"
-                id="form1"
-                className="form-control form-control-lg mt-4"
-                value={this.state.minimumContribution}
-                onChange={event =>
-                  this.setState({ minimumContribution: event.target.value })
-                }
-              />
-              <input
-                type="text"
-                placeholder="Name of the Campaign"
-                id="form1"
-                className="form-control form-control-lg mt-4"
-                value={this.state.campaignName}
-                onChange={event =>
-                  this.setState({ campaignName: event.target.value })
-                }
-              />
-              {this.state.loading ? (
-                <div>
-                  <button
-                    type="submit"
-                    className="btn btn-lg btn-primary mt-4"
-                    disabled
-                  >
-                    <i className="fa fa-refresh fa-spin mr-3"> </i>
-                    Creating...
-                  </button>{' '}
-                  <span style={{ fontSize: '20px' }} className="ml-3">
-                    Hold on! We are deploying your campaign's smart contract on
-                    the Ethereum blockchain...
-                  </span>
-                </div>
-              ) : (
-                <button type="submit" className="btn btn-lg btn-primary mt-4">
-                  Create !
-                </button>
-              )}
-              {errorAlert} {successAlert}
-            </div>
-          </form>
+            <form onSubmit={this.onSubmit}>
+              <div className="md-form mt-5">
+                <h4>Minimum Contribution</h4>
+                <h6>
+                  Amount that an individual has to contribute in order to be a
+                  backer
+                </h6>
+                <input
+                  type="text"
+                  placeholder="Enter the amount in denominations of wei"
+                  id="form1"
+                  className="form-control form-control-lg mt-4"
+                  value={this.state.minimumContribution}
+                  onChange={event =>
+                    this.setState({ minimumContribution: event.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="Name of the Campaign"
+                  id="form1"
+                  className="form-control form-control-lg mt-4"
+                  value={this.state.campaignName}
+                  onChange={event =>
+                    this.setState({ campaignName: event.target.value })
+                  }
+                />
+                {this.state.loading ? (
+                  <div>
+                    <button
+                      type="submit"
+                      className="btn btn-lg btn-primary mt-4"
+                      disabled
+                    >
+                      <i className="fa fa-refresh fa-spin mr-3"> </i>
+                      Creating...
+                    </button>{' '}
+                    <span style={{ fontSize: '20px' }} className="ml-3">
+                      Hold on! We are deploying your campaign's smart contract
+                      on the Ethereum blockchain...
+                    </span>
+                  </div>
+                ) : (
+                  <button type="submit" className="btn btn-lg btn-primary mt-4">
+                    Create !
+                  </button>
+                )}
+                {errorAlert} {successAlert}
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );
