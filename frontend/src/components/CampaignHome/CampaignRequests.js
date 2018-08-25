@@ -164,7 +164,7 @@ class CampaignRequests extends Component {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Description</th>
-            <th scope="col">Amount</th>
+            <th scope="col">Amount(ether)</th>
             <th scope="col">Recipient</th>
             <th scope="col">Approval Count</th>
             <th scope="col">#BackerOnly</th>

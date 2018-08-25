@@ -3,9 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 
 import './App.css';
-import CampaignShowcase from './components/CampaignShowcase';
-import CreateCampaign from './components/CreateCampaign';
 import CampaignHome from './components/CampaignHome/CampaignHome';
+import Landing from './components/Landing';
 
 class App extends Component {
   render() {
@@ -15,13 +14,12 @@ class App extends Component {
           <Route
             path="/"
             exact
-            component={CampaignShowcase}
+            component={Landing}
             //Using the render property and inline function we can pass props to a component
             // render={() => ( <CampaignShowcase campaigns={this.state.campaigns} />)}
           />
-          <Route path="/create-campaign" exact component={CreateCampaign} />
           <Route path="/campaigns/:id" component={CampaignHome} />
-          <Route component={CampaignShowcase} />
+          <Route component={Landing} />
         </Switch>
       </BrowserRouter>
     );
