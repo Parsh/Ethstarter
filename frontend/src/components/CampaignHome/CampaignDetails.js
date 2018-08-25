@@ -15,7 +15,11 @@ class CampaignDetails extends Component {
 
   campaign;
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchSummary();
+  }
+
+  fetchSummary = async () => {
     this.campaign = Campaign(this.props.match.params.id);
     let summary = await this.campaign.methods.getSummary().call();
     //though the above summary var looks like an array, however, it's an object with keys beint 0,1...
@@ -29,7 +33,7 @@ class CampaignDetails extends Component {
     };
 
     this.setState({ summary: summary });
-  }
+  };
 
   renderDetails() {
     const items = [
@@ -96,7 +100,10 @@ class CampaignDetails extends Component {
         value: web3.utils.toWei(this.state.value, 'ether')
       });
 
-      this.setState({ contributed: true, loading: false });
+      setTimeout(() => {
+        this.fetchSummary();
+        this.setState({ contributed: true, loading: false });
+      }, 2000);
     } catch (err) {
       if (
         err.message ===

@@ -115,7 +115,7 @@ class CreateCampaign extends Component {
           backers come together to bring new ideas to life.
           <br /> Explore creative projects and campaigns in science, design,
           games, social cause etc. and back your favorites by contributing
-          ethers. As you back a project you explicitly get to play a part in
+          ethers. As you back a project, you explicitly get to play a part in
           approving fund transfers. #GreaterControl&Transparency
         </Jumbotron>
 

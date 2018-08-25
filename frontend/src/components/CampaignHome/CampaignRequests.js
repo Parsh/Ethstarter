@@ -16,7 +16,11 @@ class CampaignRequests extends Component {
 
   campaign;
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchRequests();
+  }
+
+  fetchRequests = async () => {
     this.campaign = Campaign(this.props.match.params.id);
     const requestsCount = await this.campaign.methods.getRequestsCount().call();
     const backersCount = await this.campaign.methods.backersCount().call();
@@ -31,7 +35,7 @@ class CampaignRequests extends Component {
       requests,
       backers: backersCount
     });
-  }
+  };
 
   onApprove = async index => {
     this.setState({
@@ -46,10 +50,13 @@ class CampaignRequests extends Component {
         from: accounts[0]
       });
 
-      this.setState({
-        approved: true,
-        approvalLoading: false
-      });
+      setTimeout(() => {
+        this.fetchRequests();
+        this.setState({
+          approved: true,
+          approvalLoading: false
+        });
+      }, 2000);
     } catch (err) {
       if (
         err.message ===
@@ -78,10 +85,13 @@ class CampaignRequests extends Component {
         from: accounts[0]
       });
 
-      this.setState({
-        finalized: true,
-        finalizeLoading: false
-      });
+      setTimeout(() => {
+        this.fetchRequests();
+        this.setState({
+          finalized: true,
+          finalizeLoading: false
+        });
+      }, 2000);
     } catch (err) {
       if (
         err.message ===
@@ -110,7 +120,7 @@ class CampaignRequests extends Component {
           </td>
           <td>
             {request.complete ? null : this.state.approvalLoading ? (
-              <button className="btn btn-primary disabled">
+              <button className="btn btn-primary btn-sm disabled">
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Approving
               </button>
@@ -124,10 +134,14 @@ class CampaignRequests extends Component {
             )}
           </td>
           <td>
-            {request.complete ? null : this.state.finalizeLoading ? (
-              <button className="btn btn-mdb-color disabled">
+            {request.complete ? (
+              <button className="btn btn-mdb-color btn disabled">
+                Finalized!
+              </button>
+            ) : this.state.finalizeLoading ? (
+              <button className="btn btn-mdb-color btn-sm disabled">
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
-                Finalizing{' '}
+                Finalizing
               </button>
             ) : (
               <button
