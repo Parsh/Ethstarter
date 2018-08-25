@@ -78,7 +78,7 @@ class CreateCampaign extends Component {
         >
           Cheers! Your campaign is successfully created and campaign's smart
           contract is deployed on the Ethereum blockchain. <br />
-          Here you go:
+          That's the address:
           <strong className="ml-2" style={{ fontSize: '24px' }}>
             {this.state.campaign_address}
           </strong>

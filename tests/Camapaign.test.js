@@ -22,7 +22,7 @@ describe('Campaign', () => {
         gas: '2000000'
       });
 
-    await factory.methods.createCampaign('100').send({
+    await factory.methods.createCampaign('100', 'Test Campaign').send({
       from: accounts[0],
       gas: '1000000'
     });
@@ -68,6 +68,11 @@ describe('Campaign', () => {
   });
 
   it('should allow a manager to make a payment request', async () => {
+    await campaign.methods.contribute().send({
+      from: accounts[1],
+      value: '1900'
+    });
+
     await campaign.methods
       .createRequest('Buy Fuel Tanks', '1000', accounts[2])
       .send({
