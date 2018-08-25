@@ -123,7 +123,7 @@ class CampaignDetails extends Component {
     if (this.state.errorMessage) {
       errorAlert = (
         <div
-          className="alert alert-danger mt-4 z-depth-2 text-center"
+          className="alert alert-danger mt-4 z-depth-2 text-center animated fadeIn"
           role="alert"
         >
           <strong>Error:</strong> {this.state.errorMessage}
@@ -134,7 +134,7 @@ class CampaignDetails extends Component {
     if (this.state.contributed) {
       successAlert = (
         <div
-          className="alert alert-success mt-4 z-depth-2 clearfix text-center"
+          className="alert alert-success mt-4 z-depth-2 clearfix text-center animated fadeIn"
           style={{ fontSize: '20px' }}
           role="alert"
         >
@@ -159,13 +159,19 @@ class CampaignDetails extends Component {
           />
           {this.state.loading ? (
             <div>
-              <button className="btn btn-lg btn-primary mt-4" disabled>
+              <button
+                className="btn btn-lg btn-primary mt-4 animated fadeIn"
+                disabled
+              >
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Contributing...
               </button>
             </div>
           ) : (
-            <button type="submit" className="btn btn-lg btn-primary mt-4">
+            <button
+              type="submit"
+              className="btn btn-lg btn-primary mt-4 animated fadeIn"
+            >
               Contribute !
             </button>
           )}

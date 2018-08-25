@@ -57,7 +57,7 @@ class CampaignCreateRequest extends Component {
     if (this.state.errorMessage) {
       errorAlert = (
         <div
-          className="alert alert-danger mt-4 z-depth-2 text-center"
+          className="alert alert-danger mt-4 z-depth-2 text-center animated fadeIn"
           role="alert"
         >
           <strong>Error:</strong> {this.state.errorMessage}
@@ -68,7 +68,7 @@ class CampaignCreateRequest extends Component {
     if (this.state.created) {
       successAlert = (
         <div
-          className="alert alert-success mt-4 z-depth-2 clearfix text-center"
+          className="alert alert-success mt-4 z-depth-2 clearfix text-center animated fadeIn"
           style={{ fontSize: '20px' }}
           role="alert"
         >
@@ -121,13 +121,19 @@ class CampaignCreateRequest extends Component {
           </div>
           {this.state.loading ? (
             <div>
-              <button className="btn btn-lg btn-primary mt-4 w-25" disabled>
+              <button
+                className="btn btn-lg btn-primary mt-4 w-25 animated fadeIn"
+                disabled
+              >
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Creating...
               </button>
             </div>
           ) : (
-            <button type="submit" className="btn btn-lg btn-primary mt-4  w-25">
+            <button
+              type="submit"
+              className="btn btn-lg btn-primary mt-4  w-25 animated fadeIn"
+            >
               Create !
             </button>
           )}

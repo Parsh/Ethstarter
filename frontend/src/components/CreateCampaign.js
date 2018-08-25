@@ -63,7 +63,7 @@ class CreateCampaign extends Component {
     if (this.state.errorMessage) {
       errorAlert = (
         <div
-          className="alert alert-danger mt-4 z-depth-2 text-center"
+          className="alert alert-danger mt-4 z-depth-2 text-center animated fadeIn"
           role="alert"
         >
           <strong>Error: </strong>
@@ -75,7 +75,7 @@ class CreateCampaign extends Component {
     if (this.state.created) {
       successAlert = (
         <div
-          className="alert alert-success mt-4 z-depth-2 clearfix mb-5 text-center"
+          className="alert alert-success mt-4 z-depth-2 clearfix mb-5 text-center animated fadeIn"
           style={{ fontSize: '20px' }}
           role="alert"
         >
@@ -141,7 +141,7 @@ class CreateCampaign extends Component {
                 <div>
                   <button
                     type="submit"
-                    className="btn btn-lg btn-primary mt-4"
+                    className="btn btn-lg btn-primary mt-4 animated fadeIn"
                     disabled
                   >
                     <i className="fa fa-refresh fa-spin mr-3"> </i>
@@ -153,7 +153,10 @@ class CreateCampaign extends Component {
                   </span>
                 </div>
               ) : (
-                <button type="submit" className="btn btn-lg btn-primary mt-4">
+                <button
+                  type="submit"
+                  className="btn btn-lg btn-primary mt-4 animated fadeIn"
+                >
                   Create !
                 </button>
               )}

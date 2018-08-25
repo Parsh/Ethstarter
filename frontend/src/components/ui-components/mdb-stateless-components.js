@@ -14,7 +14,7 @@ export class ShowCard extends Component {
 
   render() {
     return (
-      <div className="card hoverable mt-4">
+      <div className="card hoverable mt-4 animated fadeIn">
         <div className="card-body">
           <h3 className="card-title">{this.state.campaignName}</h3>
           <h5 className="card-title text-muted">{this.props.address}</h5>
@@ -29,7 +29,7 @@ export class ShowCard extends Component {
 
 export const DetailCard = props => {
   return (
-    <div className="col-md-6 mt-5">
+    <div className="col-md-6 mt-5 animated fadeIn">
       <div className="z-depth-3">
         <div className="card" style={{ height: '200px' }}>
           <div className="card-body">
@@ -45,7 +45,7 @@ export const DetailCard = props => {
 
 export const CampaignTron = props => {
   return (
-    <div className="jumbotron text-center hoverable">
+    <div className="jumbotron text-center hoverable animated fadeIn">
       <h1 className="h1-reponsive mb-4">
         <strong>{props.campaignName}</strong>
       </h1>

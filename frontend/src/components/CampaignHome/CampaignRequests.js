@@ -117,7 +117,7 @@ class CampaignRequests extends Component {
   renderRow = () => {
     return this.state.requests.map((request, index) => {
       return (
-        <tr key={index}>
+        <tr key={index} className="animated fadeIn">
           <th scope="row">{index}</th>
           <td>{request.description}</td>
           <td>{web3.utils.fromWei(request.value, 'ether')}</td>
@@ -128,13 +128,13 @@ class CampaignRequests extends Component {
           <td>
             {request.complete ? null : this.state.approvalLoading &&
             this.state.processingIndex == index ? (
-              <button className="btn btn-primary btn-sm disabled">
+              <button className="btn btn-primary btn-sm disabled animated fadeIn">
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Approving
               </button>
             ) : (
               <button
-                className="btn btn-primary"
+                className="btn btn-primary animated fadeIn"
                 onClick={() => this.onApprove(index)}
               >
                 Approve
@@ -143,18 +143,18 @@ class CampaignRequests extends Component {
           </td>
           <td>
             {request.complete ? (
-              <button className="btn btn-mdb-color btn disabled">
+              <button className="btn btn-mdb-color btn disabled animated fadeIn">
                 Finalized!
               </button>
             ) : this.state.finalizeLoading &&
             this.state.processingIndex == index ? (
-              <button className="btn btn-mdb-color btn-sm disabled">
+              <button className="btn btn-mdb-color btn-sm disabled animated fadeIn">
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
                 Finalizing
               </button>
             ) : (
               <button
-                className="btn btn-mdb-color"
+                className="btn btn-mdb-color animated fadeIn"
                 onClick={() => this.onFinalize(index)}
               >
                 Finalize
@@ -193,7 +193,7 @@ class CampaignRequests extends Component {
     if (this.state.errorMessage) {
       errorAlert = (
         <div
-          className="alert alert-danger mt-4 z-depth-2 text-center"
+          className="alert alert-danger mt-4 z-depth-2 text-center animated fadeIn"
           role="alert"
         >
           <strong>Error:</strong> {this.state.errorMessage}
@@ -204,7 +204,7 @@ class CampaignRequests extends Component {
     if (this.state.approved) {
       approvedAlert = (
         <div
-          className="alert alert-success mt-4 z-depth-2 clearfix text-center"
+          className="alert alert-success mt-4 z-depth-2 clearfix text-center animated fadeIn"
           style={{ fontSize: '20px' }}
           role="alert"
         >
@@ -216,7 +216,7 @@ class CampaignRequests extends Component {
     if (this.state.finalized) {
       finalizedAlert = (
         <div
-          className="alert alert-success mt-4 z-depth-2 clearfix text-center"
+          className="alert alert-success mt-4 z-depth-2 clearfix text-center animated fadeIn"
           style={{ fontSize: '20px' }}
           role="alert"
         >
