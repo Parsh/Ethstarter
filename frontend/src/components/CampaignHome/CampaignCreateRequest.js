@@ -134,13 +134,13 @@ class CampaignCreateRequest extends Component {
           Ethstarter
         </Link>
         <Link
-          to={'campaigns/' + this.props.contractAddress}
+          to={`/campaigns/${this.props.contractAddress}`}
           className="breadcrumb-item"
         >
           Campaign Details
         </Link>
         <Link
-          to={'campaigns/' + this.props.contractAddress + '/requests'}
+          to={`/campaigns/${this.props.contractAddress}/requests`}
           className="breadcrumb-item"
         >
           Campaign Requests

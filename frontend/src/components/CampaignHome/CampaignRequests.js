@@ -195,7 +195,7 @@ class CampaignRequests extends Component {
           Ethstarter
         </Link>
         <Link
-          to={'campaigns/' + this.props.match.params.id}
+          to={`/campaigns/${this.props.match.params.id}`}
           className="breadcrumb-item"
         >
           Campaign Details
