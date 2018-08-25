@@ -1,6 +1,6 @@
 # Ethstarter
 
-Ethstarter is a decentralized application(DApp), built over Ethereum, with an aim to provide a multifold transparent and safer project/campaign crowdfunding solution with respect to the existing centralized and hugely scammed Kickstarter system.
+Ethstarter is a decentralized application(DApp), built over Ethereum, with an aim to provide a multifold transparent and safer project/campaign crowdfunding solution as compared to the existing centralized and hugely scammed Kickstarter system.
 
 ## How does Ethstarter makes a difference?
 
