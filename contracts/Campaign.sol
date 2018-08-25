@@ -4,10 +4,12 @@ contract CampaignFactory{
     
     address[] public deployedCampaigns;
     address public recentCampaign;
+    mapping(address => string) public campaignNames;
     
-    function createCampaign(uint _minimumContribution) public {
-        address newCampaign = new Campaign(_minimumContribution, msg.sender);
+    function createCampaign(uint _minimumContribution, string _name) public {
+        address newCampaign = new Campaign(_minimumContribution, _name, msg.sender);
         deployedCampaigns.push(newCampaign);
+        campaignNames[newCampaign] = _name;
         recentCampaign = newCampaign;
     }
     
@@ -29,6 +31,7 @@ contract Campaign{
     }
 
     address public manager;
+    string public campaignName;
     uint public minimumContribution;
     mapping(address => bool) public backers;
     uint public backersCount;
@@ -44,9 +47,10 @@ contract Campaign{
         _;
     }
 
-    function Campaign(uint _minimumContribution, address _manager) public {
-        manager = _manager;
+    function Campaign(uint _minimumContribution, string _name, address _manager) public {
         minimumContribution = _minimumContribution;
+        campaignName = _name;
+        manager = _manager;
     }   
 
     function contribute() public payable {
