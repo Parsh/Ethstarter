@@ -81,6 +81,12 @@ class CampaignDetails extends Component {
     });
 
     try {
+      if (this.state.value < this.state.summary.minimumContribution) {
+        throw Error(
+          "You must contribute more than the campaign's specified minimum in order to become a backer."
+        );
+      }
+
       const accounts = await web3.eth.getAccounts();
       await this.campaign.methods.contribute().send({
         from: accounts[0],
@@ -123,8 +129,8 @@ class CampaignDetails extends Component {
           role="alert"
         >
           Yay! You successfully contributed to the campaign. <br />
-          <strong style={{ fontSize: '25px' }}>You are now a backer</strong>
-          with the ability to participate in request approvals.
+          <strong style={{ fontSize: '25px' }}>You are now a backer. </strong>
+          Therefore, you have the ability to participate in request approvals.
         </div>
       );
     }

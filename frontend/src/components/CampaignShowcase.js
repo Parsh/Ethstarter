@@ -13,7 +13,7 @@ class CampaignShowcase extends Component {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
 
     const campaignCards = campaigns.map(address => {
-      return <ShowCard title={address} key={address} route={address} />;
+      return <ShowCard address={address} key={address} route={address} />;
     });
 
     this.setState({ renderCampaigns: campaignCards });

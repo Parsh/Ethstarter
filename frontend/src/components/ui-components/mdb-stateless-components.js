@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Campaign from '../../ethereum/campaign';
 
-export const ShowCard = props => {
-  return (
-    <div className="card hoverable mt-4">
-      <div className="card-body">
-        <h4 className="card-title">{props.title}</h4>
-        <p className="card-text">{props.children}</p>
-        <Link to={'campaigns/' + props.route}>
-          <button className="btn btn-info">View Campaign</button>
-        </Link>
+export class ShowCard extends Component {
+  state = {
+    campaignName: ''
+  };
+  async componentDidMount() {
+    const campaign = Campaign(this.props.address);
+    const campaignName = await campaign.methods.campaignName().call();
+    this.setState({ campaignName });
+  }
+
+  render() {
+    return (
+      <div className="card hoverable mt-4">
+        <div className="card-body">
+          <h3 className="card-title">{this.state.campaignName}</h3>
+          <h5 className="card-title text-muted">{this.props.address}</h5>
+          <Link to={'campaigns/' + this.props.route}>
+            <button className="btn btn-info">View Campaign</button>
+          </Link>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export const DetailCard = props => {
   return (
@@ -40,9 +52,7 @@ export const CampaignTron = props => {
       <h3 className="h3-responsive text-muted">
         Address of Campaign's Smart Contract: {props.contractAddress}
       </h3>
-      <h4 className="h3-responsive text-muted">
-        Address of Campaign Manager: {props.manager}
-      </h4>
+      <h4 className="h3-responsive text-muted">Managed by: {props.manager}</h4>
     </div>
   );
 };

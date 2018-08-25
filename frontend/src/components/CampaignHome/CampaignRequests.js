@@ -112,7 +112,7 @@ class CampaignRequests extends Component {
             {request.complete ? null : this.state.approvalLoading ? (
               <button className="btn btn-primary disabled">
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
-                Approving...
+                Approving
               </button>
             ) : (
               <button
@@ -127,7 +127,7 @@ class CampaignRequests extends Component {
             {request.complete ? null : this.state.finalizeLoading ? (
               <button className="btn btn-mdb-color disabled">
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
-                Finalizing...
+                Finalizing{' '}
               </button>
             ) : (
               <button
