@@ -105,7 +105,7 @@ class CreateCampaign extends Component {
     );
 
     return (
-      <div className="container mt-5 animated fadeIn">
+      <div className="container mt-5 mb-5 animated fadeIn">
         {breadcrum}
         <div className="ml-3">
           <h1 className="mt-3">Create Campaign</h1>

@@ -14,10 +14,11 @@ class Landing extends Component {
         >
           Ethstarter is a place where independent creators and passionate
           backers come together to bring new ideas to life.
-          <br /> Explore creative projects and campaigns in science, design,
-          games, social cause etc. and back your favorites by contributing
-          ethers. As you back a project, you explicitly get to play a part in
-          approving fund transfers. #GreaterControl&Transparency
+          <br /> At Ethstarter you can create campaigns and back your favorites
+          by contributing ethers. Individuals who are backing the projects gain
+          explicit rights to approve funds transfer requests, therefore,
+          Ethstarter provides funds control back to backers.{' '}
+          <strong>#BackersConsensus</strong>
         </Jumbotron>
         <Switch>
           <Route path="/create-campaign" exact component={CreateCampaign} />
