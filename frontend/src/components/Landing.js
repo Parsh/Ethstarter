@@ -12,8 +12,8 @@ class Landing extends Component {
           title="Ethstarter: Bringing creative projects to life!"
           buttonText="Start a Campaign"
         >
-          Ethstarter is a place where independent creators and passionate
-          backers come together to bring new ideas to life.
+          Ethstarter is a decentralized platform where independent creators and
+          passionate backers come together to bring ideas to life.
           <br /> At Ethstarter you can create campaigns and back your favorites
           by contributing ethers. Individuals who are backing the projects gain
           explicit rights to approve funds transfer requests, therefore,
