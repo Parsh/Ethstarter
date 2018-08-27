@@ -51,10 +51,18 @@ export const CampaignTron = props => {
       <h1 className="h1-reponsive mb-4 animated fadeIn">
         <strong>{props.campaignName}</strong>
       </h1>
-      <h3 className="h3-responsive text-muted">
+      <h3
+        className="h3-responsive text-muted"
+        style={{ wordWrap: 'break-word' }}
+      >
         Address of Campaign's Smart Contract: {props.contractAddress}
       </h3>
-      <h4 className="h3-responsive text-muted">Managed by: {props.manager}</h4>
+      <h4
+        className="h3-responsive text-muted"
+        style={{ wordWrap: 'break-word' }}
+      >
+        Managed by: {props.manager}
+      </h4>
     </div>
   );
 };

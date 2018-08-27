@@ -122,7 +122,7 @@ class CampaignCreateRequest extends Component {
           {this.state.loading ? (
             <div>
               <button
-                className="btn btn-lg btn-primary mt-4 w-25 animated fadeIn"
+                className="btn btn-lg btn-primary mt-4 animated fadeIn"
                 disabled
               >
                 <i className="fa fa-refresh fa-spin mr-3"> </i>
@@ -132,7 +132,7 @@ class CampaignCreateRequest extends Component {
           ) : (
             <button
               type="submit"
-              className="btn btn-lg btn-primary mt-4  w-25 animated fadeIn"
+              className="btn btn-lg btn-primary mt-4 animated fadeIn"
             >
               Create !
             </button>
