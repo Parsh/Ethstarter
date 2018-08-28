@@ -13,12 +13,12 @@ class CampaignShowcase extends Component {
   };
 
   async componentDidMount() {
-    const network = await web3.eth.net.getNetworkType();
-    if (network !== 'rinkeby') {
-      this.setState({ otherNetwork: network });
-    }
-
     try {
+      const network = await web3.eth.net.getNetworkType();
+      if (network !== 'rinkeby') {
+        this.setState({ otherNetwork: network });
+      }
+
       const campaigns = await factory.methods.getDeployedCampaigns().call();
 
       const campaignCards = campaigns.map(address => {
